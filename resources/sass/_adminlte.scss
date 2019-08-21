@@ -1,0 +1,15 @@
+body {
+  font-size: 1.3rem;
+}
+
+.main-header {
+  .logo:hover {
+    text-decoration: none;
+    background-color: $dark-blue;
+  }
+  .navbar {
+    position: relative;
+    display: block;
+    padding: 0;
+  }
+}

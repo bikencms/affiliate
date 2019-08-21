@@ -10644,3 +10644,18 @@ a.text-dark:focus {
   }
 }
 
+body {
+  font-size: 1.3rem;
+}
+
+.main-header .logo:hover {
+  text-decoration: none;
+  background-color: #357ca5;
+}
+
+.main-header .navbar {
+  position: relative;
+  display: block;
+  padding: 0;
+}
+

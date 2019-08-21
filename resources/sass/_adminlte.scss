@@ -7,9 +7,25 @@ body {
     text-decoration: none;
     background-color: $dark-blue;
   }
+
   .navbar {
     position: relative;
     display: block;
     padding: 0;
+
+    .navbar-custom-menu .dropdown-menu {
+      .user-header {
+        height: 100%;
+      }
+
+      .user-footer .btn-default {
+        font-size: 14px;
+        border-color: $gray;
+      }
+
+      .user-footer .btn-default:hover {
+        border-color: $darker-gray;
+      }
+    }
   }
 }

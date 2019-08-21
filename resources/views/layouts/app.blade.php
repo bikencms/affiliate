@@ -68,7 +68,7 @@
                         <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <img src="{{ URL::to('/') }}/assets/media/avatars/avatar0.jpg" class="img-circle" alt="User Image">
 
                                     <p>
                                         {{ Auth::user()->name }} - {{ Auth::user()->email }}

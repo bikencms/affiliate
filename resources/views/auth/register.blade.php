@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Affiliate website | Log in</title>
+    <title>Affiliate website | Register</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -41,6 +41,7 @@
 
         <form method="post" action="{{ route('register') }}">
             @csrf
+            <input type="hidden" name="email_referral" value="{{ app('request')->input('email_referral') }}">
             <div class="form-group has-feedback @error('name') has-error @enderror">
                 @error('name')
                 <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with

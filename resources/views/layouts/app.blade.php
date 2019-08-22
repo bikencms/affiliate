@@ -33,11 +33,11 @@
 <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
-        <a href="../../index2.html" class="logo">
+        <a href="/" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>Affiliate</b> Website</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Affiliate</b> Website</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -62,17 +62,17 @@
                     @else
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ URL::to('/') }}/assets/media/avatars/avatar0.jpg" class="user-image" alt="User Image">
+                            <img src="{{ asset('vendor/adminlte/dist/img/avatar5.png') }}" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{ Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="{{ URL::to('/') }}/assets/media/avatars/avatar0.jpg" class="img-circle" alt="User Image">
+                                    <img src="{{ asset('vendor/adminlte/dist/img/avatar2.png') }}" class="img-circle" alt="User Image">
 
                                     <p>
                                         {{ Auth::user()->name }} - {{ Auth::user()->email }}
-                                        <small>Member since {{ Auth::user()->created_at }}</small>
+                                        <small>Member since {{ Auth::user()->created_at->format('m Y') }}</small>
                                     </p>
                                 </li>
                                 <li class="user-footer">
@@ -134,8 +134,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Widgets</span>
+                    <a href="{{ route('package') }}">
+                        <i class="fa fa-th"></i> <span>Package</span>
                         <span class="pull-right-container">
               <small class="label pull-right bg-green">Hot</small>
             </span>
@@ -155,9 +155,9 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.13
+            <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+        <strong>Copyright &copy; 2019 <a href="/">Affiliate</b> Website</a>.</strong> All rights
         reserved.
     </footer>
 </div>

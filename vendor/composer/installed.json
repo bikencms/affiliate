@@ -1549,30 +1549,30 @@
         ]
     },
     {
-        "name": "infyomlabs/adminlte-templates",
+        "name": "infyomlabs/generator-builder",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/InfyOmLabs/adminlte-templates.git",
-            "reference": "51a671d525c87ffcb69af6c1b98a0f7c75362392"
+            "url": "https://github.com/InfyOmLabs/generator-builder.git",
+            "reference": "1e5e99f2f7e0dfe9a7eda480f345f4745ab47d6e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/InfyOmLabs/adminlte-templates/zipball/51a671d525c87ffcb69af6c1b98a0f7c75362392",
-            "reference": "51a671d525c87ffcb69af6c1b98a0f7c75362392",
+            "url": "https://api.github.com/repos/InfyOmLabs/generator-builder/zipball/1e5e99f2f7e0dfe9a7eda480f345f4745ab47d6e",
+            "reference": "1e5e99f2f7e0dfe9a7eda480f345f4745ab47d6e",
             "shasum": ""
         },
         "require": {
             "illuminate/support": "~5.0",
             "php": ">=5.5.9"
         },
-        "time": "2016-08-20T20:49:41+00:00",
+        "time": "2019-05-16T03:30:25+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "InfyOm\\AdminLTETemplates\\": "src/"
+                "InfyOm\\GeneratorBuilder\\": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -1585,14 +1585,16 @@
                 "email": "me@mitul.me"
             }
         ],
-        "description": "AdminLTE templates for InfyOm Laravel Generator",
+        "description": "InfyOm Laravel Generator GUI Builder",
         "keywords": [
-            "AdminLTE",
-            "bootstrap",
+            "api",
+            "builder",
+            "crud",
             "generator",
-            "infyom",
+            "gui",
+            "interface",
             "laravel",
-            "templates"
+            "view"
         ]
     },
     {
@@ -1761,17 +1763,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v5.8.32",
-        "version_normalized": "5.8.32.0",
+        "version": "v5.8.33",
+        "version_normalized": "5.8.33.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "ee16d719516dfd77ed6c9538000bca49ded284e2"
+            "reference": "58b81842cbdcfbbd8302790ac0f98119ea1c56e5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/ee16d719516dfd77ed6c9538000bca49ded284e2",
-            "reference": "ee16d719516dfd77ed6c9538000bca49ded284e2",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/58b81842cbdcfbbd8302790ac0f98119ea1c56e5",
+            "reference": "58b81842cbdcfbbd8302790ac0f98119ea1c56e5",
             "shasum": ""
         },
         "require": {
@@ -1874,7 +1876,7 @@
             "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.1).",
             "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
         },
-        "time": "2019-08-13T14:11:52+00:00",
+        "time": "2019-08-20T15:45:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3199,17 +3201,17 @@
     },
     {
         "name": "phpunit/phpunit",
-        "version": "7.5.14",
-        "version_normalized": "7.5.14.0",
+        "version": "7.5.15",
+        "version_normalized": "7.5.15.0",
         "source": {
             "type": "git",
             "url": "https://github.com/sebastianbergmann/phpunit.git",
-            "reference": "2834789aeb9ac182ad69bfdf9ae91856a59945ff"
+            "reference": "d79c053d972856b8b941bb233e39dc521a5093f0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2834789aeb9ac182ad69bfdf9ae91856a59945ff",
-            "reference": "2834789aeb9ac182ad69bfdf9ae91856a59945ff",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d79c053d972856b8b941bb233e39dc521a5093f0",
+            "reference": "d79c053d972856b8b941bb233e39dc521a5093f0",
             "shasum": ""
         },
         "require": {
@@ -3248,7 +3250,7 @@
             "ext-xdebug": "*",
             "phpunit/php-invoker": "^2.0"
         },
-        "time": "2019-07-15T06:24:08+00:00",
+        "time": "2019-08-21T07:05:16+00:00",
         "bin": [
             "phpunit"
         ],

@@ -10659,3 +10659,16 @@ body {
   padding: 0;
 }
 
+.main-header .navbar .navbar-custom-menu .dropdown-menu .user-header {
+  height: 100%;
+}
+
+.main-header .navbar .navbar-custom-menu .dropdown-menu .user-footer .btn-default {
+  font-size: 14px;
+  border-color: #ddd;
+}
+
+.main-header .navbar .navbar-custom-menu .dropdown-menu .user-footer .btn-default:hover {
+  border-color: #adadad;
+}
+

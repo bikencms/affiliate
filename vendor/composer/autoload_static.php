@@ -112,7 +112,7 @@ class ComposerStaticInitf7124c53e6e9cb10d4a3b9b7caf7cd5c
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
-            'InfyOm\\AdminLTETemplates\\' => 25,
+            'InfyOm\\GeneratorBuilder\\' => 24,
             'Illuminate\\' => 11,
         ),
         'G' => 
@@ -344,9 +344,9 @@ class ComposerStaticInitf7124c53e6e9cb10d4a3b9b7caf7cd5c
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
-        'InfyOm\\AdminLTETemplates\\' => 
+        'InfyOm\\GeneratorBuilder\\' => 
         array (
-            0 => __DIR__ . '/..' . '/infyomlabs/adminlte-templates/src',
+            0 => __DIR__ . '/..' . '/infyomlabs/generator-builder/src',
         ),
         'Illuminate\\' => 
         array (
@@ -2484,6 +2484,7 @@ class ComposerStaticInitf7124c53e6e9cb10d4a3b9b7caf7cd5c
         'Illuminate\\Translation\\TranslationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/TranslationServiceProvider.php',
         'Illuminate\\Translation\\Translator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/Translator.php',
         'Illuminate\\Validation\\ClosureValidationRule' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/ClosureValidationRule.php',
+        'Illuminate\\Validation\\Concerns\\FilterEmailValidation' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Concerns/FilterEmailValidation.php',
         'Illuminate\\Validation\\Concerns\\FormatsMessages' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Concerns/FormatsMessages.php',
         'Illuminate\\Validation\\Concerns\\ReplacesAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Concerns/ReplacesAttributes.php',
         'Illuminate\\Validation\\Concerns\\ValidatesAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Concerns/ValidatesAttributes.php',
@@ -2541,7 +2542,10 @@ class ComposerStaticInitf7124c53e6e9cb10d4a3b9b7caf7cd5c
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
-        'InfyOm\\AdminLTETemplates\\AdminLTETemplatesServiceProvider' => __DIR__ . '/..' . '/infyomlabs/adminlte-templates/src/AdminLTETemplatesServiceProvider.php',
+        'InfyOm\\GeneratorBuilder\\Commands\\GeneratorBuilderRoutesPublisherCommand' => __DIR__ . '/..' . '/infyomlabs/generator-builder/src/Commands/GeneratorBuilderRoutesPublisherCommand.php',
+        'InfyOm\\GeneratorBuilder\\Controllers\\GeneratorBuilderController' => __DIR__ . '/..' . '/infyomlabs/generator-builder/src/Controllers/GeneratorBuilderController.php',
+        'InfyOm\\GeneratorBuilder\\GeneratorBuilderServiceProvider' => __DIR__ . '/..' . '/infyomlabs/generator-builder/src/GeneratorBuilderServiceProvider.php',
+        'InfyOm\\GeneratorBuilder\\Requests\\BuilderGenerateRequest' => __DIR__ . '/..' . '/infyomlabs/generator-builder/src/Requests/BuilderGenerateRequest.php',
         'Intervention\\Image\\AbstractColor' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/AbstractColor.php',
         'Intervention\\Image\\AbstractDecoder' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/AbstractDecoder.php',
         'Intervention\\Image\\AbstractDriver' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/AbstractDriver.php',

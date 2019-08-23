@@ -54,11 +54,7 @@ class OrderController extends Controller
             if( count((array)$user_level2) > 0 ) {
                 $user_level2->point = $order->package->price * 0.05 + $user_level2->point;
                 $user_level2->save();
-            } else {
-                return abort(404);
             }
-        } else {
-            return abort(404);
         }
         if( $order->save() && $user_current->save() ) {
             return redirect('/order');

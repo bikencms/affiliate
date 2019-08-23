@@ -21,6 +21,8 @@ class AdminController extends Controller
         $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id],['role_id', '=', 1]])->first();
         if( count($role_user) > 0 && $role_user != '' ) {
             return true;
+        } else {
+            die('rong');
         }
         return false;
     }

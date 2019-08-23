@@ -17,6 +17,7 @@ class CreateTableOrders extends Migration
             $table->bigIncrements('id');
             $table->integer('id_user')->default(0);
             $table->integer('id_package')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

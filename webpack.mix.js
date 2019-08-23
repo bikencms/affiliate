@@ -14,3 +14,4 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 mix.copyDirectory('vendor/almasaeed2010', 'public/vendor');
+mix.scripts('resources/js/custom.js', 'public/js/custom.js');

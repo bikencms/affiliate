@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Package;
+use App\Models\Order;
 class PackageController extends Controller
 {
     /**
@@ -23,10 +24,23 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return view('package');
+        $packages = Package::all();
+        return view('package', compact('packages'));
     }
 
     public function addPackage(Request $request) {
+        $idPackpage = $request->query('id_package');
+        $idUser = \Auth::user()->id;
+        $order =  new Order();
+        $order->id_user = $idUser;
+        $order->id_package = $idPackpage;
 
+        if($order->save()) {
+            echo '<script>localStorage.clear();</script>';
+            session()->flash('flash_order_message', 1);
+            return redirect('/package_success');
+        } else {
+            die('Something went wrong.');
+        }
     }
 }

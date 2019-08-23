@@ -8,3 +8,14 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'adminlte';
 
+.navbar, .navbar>.container, .navbar>.container-fluid {
+  display: inherit;
+  flex-wrap: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+
+.navbar-static-top .nav-link {
+  float: right;
+  padding: 1.5rem 1rem;
+}

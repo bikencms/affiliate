@@ -13,39 +13,23 @@
     <section class="content">
         <div class="container">
             <div class="row">
+                @foreach( $packages  as $key => $package)
                 <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua">
+                    <div class="small-box @if($key == 0) bg-aqua @else bg-green @endif ">
                         <div class="inner">
-                            <h3>100$</h3>
+                            <h3>{{ $package->price }}$</h3>
 
-                            <p>ROBOT 1</p>
+                            <p>{{ $package->name }}</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-rocket"></i>
+                            <i class="fa @if($key == 0) fa-rocket @else fa-slideshare  @endif "></i>
                         </div>
-                        <a href="{{ route('add-package', [ 'id_package' => 1 ]) }}" class="small-box-footer">
+                        <a href="{{ route('add-package', [ 'id_package' => $package->id ]) }}" class="small-box-footer btn-confirm">
                             BUY
                         </a>
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <h3>200$</h3>
-
-                            <p>ROBOT 2</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-slideshare"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">
-                            BUY
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

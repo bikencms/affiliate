@@ -70,7 +70,6 @@
             </div>
         </form>
         <br>
-        <a href="{{ route('password.request') }}">I forgot my password</a><br>
         <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
     </div>
 </div>

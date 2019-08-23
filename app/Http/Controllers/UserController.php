@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\RoleUser;
-use App\Models\Package;
+use App\User;
 use App\Http\Controllers\AdminController as Controller;
-class HomeController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,13 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $isAdmin = 0;
-        if($this->isAdmin()) {
-            $isAdmin = 1;
+        if(!$this->isAdmin()) {
+            return abort(404);
         }
-
-        $packages = Package::all();
-        return view('package', compact('packages', 'isAdmin'));
+        $users = User::all();
+        return view('manager_user', compact('users'));
     }
 
+    public function isAdmin() {
+        $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id],['role_id', '=', 1]])->first();
+        if( count($role_user) > 0 ) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,3 +1,11 @@
+<?php
+use App\Models\RoleUser;
+$isAdmin = 0;
+$role_user = RoleUser::where([['user_id', '=', \Auth::user()->id],['role_id', '=', 1]])->first();
+if( count($role_user) > 0 ) {
+    $isAdmin = 1;
+}
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -28,6 +36,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        #DataTables_Table_0_wrapper, #DataTables_Table_0_wrapper .row {
+            display: inherit;
+            flex-flow: inherit;
+            align-items: inherit;
+        }
+
+        #DataTables_Table_0_wrapper .row {
+            width: 100%;
+        }
+    </style>
+    @stack('styles')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -47,38 +67,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
+        @guest
+            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+        @else
             <!-- Sidebar toggle button-->
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                    @else
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ asset('vendor/adminlte/dist/img/avatar5.png') }}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">{{ Auth::user()->name }}</span>
-                        </a>
-                        <ul class="dropdown-menu">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{ asset('vendor/adminlte/dist/img/avatar5.png') }}" class="user-image"
+                                     alt="User Image">
+                                <span class="hidden-xs">{{ Auth::user()->email }} | <span class="text-success">{{ Auth::user()->point }}
+                                        point</span></span>
+                            </a>
+                            <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="{{ asset('vendor/adminlte/dist/img/avatar2.png') }}" class="img-circle" alt="User Image">
-
-                                    <p>
-                                        {{ Auth::user()->name }} - {{ Auth::user()->email }}
-                                        <small>Member since {{ Auth::user()->created_at->format('m Y') }}</small>
-                                    </p>
+                                    <p class="text-success">{{ Auth::user()->point }} point</p>
+                                    <p class="text-success">{{ URL::to('/register?email_referral='.Auth::user()->email) }}</p>
+                                    <button onclick="copyTextToClipboard('{{url('/')}}/register?email_referral={{ Auth::user()->email }}');"
+                                            class="btn btn-success btn-min-width btn-glow mr-1 mb-0">{{__('Copy clipboard')}}</button>
                                 </li>
                                 <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
                                     <div class="pull-right">
                                         <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
@@ -89,10 +100,10 @@
                                     </div>
                                 </li>
                             </ul>
-                        @endguest
-                    </li>
-                </ul>
-            </div>
+                        </li>
+                    </ul>
+                </div>
+            @endguest
         </nav>
     </header>
 
@@ -108,39 +119,29 @@
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <span class="pull-right-container"></span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                        <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span>Layout Options</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                        <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                        <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                        <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="{{ route('package') }}">
-                        <i class="fa fa-th"></i> <span>Package</span>
-                        <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
-            </span>
+                        <i class="fa fa-cubes"></i> <span>Package</span>
+                        <span class="pull-right-container"><small class="label pull-right bg-green">Hot</small></span>
                     </a>
                 </li>
+                @if($isAdmin)
+                <li>
+                    <a href="{{ route('user-manager') }}">
+                        <i class="fa fa-user"></i> <span>User</span>
+                    </a>
+                </li>
+                @endif
+                @if($isAdmin)
+                <li>
+                    <a href="{{ route('order') }}">
+                        <i class="fa fa-money"></i> <span>Order</span>
+                    </a>
+                </li>
+                @endif
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -166,5 +167,50 @@
 <script src="{{ asset('vendor/adminlte/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/demo.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
+
+<!-- Data Table -->
+<link rel="stylesheet"
+      href="//adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<!-- Data Table -->
+<script type="text/javascript"
+        src="//adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+        src="//adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.data-table').DataTable();
+    });
+    function fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            document.execCommand("copy");
+        } catch (err) {
+            console.error("Fallback: Oops, unable to copy", err);
+        }
+
+        document.body.removeChild(textArea);
+    }
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(
+            function () {
+                console.log("Async: Copying to clipboard was successful!");
+            },
+            function (err) {
+                console.error("Async: Could not copy text: ", err);
+            }
+        );
+    }
+</script>
+@stack('scripts')
 </body>
 </html>

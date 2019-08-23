@@ -2,7 +2,7 @@
 use App\Models\RoleUser;
 $isAdmin = 0;
 $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id],['role_id', '=', 1]])->first();
-if( count($role_user) > 0 ) {
+if( count((array)$role_user) > 0 ) {
     $isAdmin = 1;
 }
 ?>

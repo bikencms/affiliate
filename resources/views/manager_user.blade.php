@@ -12,7 +12,7 @@
     <section class="content">
         <div class="container">
             <div class="row">
-                <table class="table table-striped table-vcenter table-bordered data-table">
+                <table class="table table-striped table-vcenter table-bordered data-table table-responsive">
                     <thead>
                     <tr>
                         <th>ID</th>

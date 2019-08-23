@@ -19,8 +19,7 @@ class AdminController extends Controller
 
     public function isAdmin() {
         $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id],['role_id', '=', 1]])->first();
-        print_r($role_user); die;
-        if( count($role_user) > 0 ) {
+        if( count($role_user) > 0 && $role_user != '' ) {
             return true;
         }
         return false;

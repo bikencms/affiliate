@@ -46,12 +46,12 @@ class OrderController extends Controller
         $user_current->point = $order->package->price * 0.3 + $user_current->point;
         //calculator for user level higher 1
         $user_level1 = User::where('email', '=', $user_current->email_referral)->first();
-        if( count($user_level1) > 0 ) {
+        if( count($user_level1) > 0 && $user_level1 != '' ) {
             $user_level1->point = $order->package->price * 0.05 + $user_level1->point;
             $user_level1->save();
             //calculator for user level higher 2
             $user_level2 = User::where('email', '=', $user_level1->email_referral)->first();
-            if( count($user_level2) > 0 ) {
+            if( count($user_level2) > 0 && $user_level2 != '' ) {
                 $user_level2->point = $order->package->price * 0.05 + $user_level2->point;
                 $user_level2->save();
             } else {
@@ -65,11 +65,4 @@ class OrderController extends Controller
         }
     }
 
-    public function isAdmin() {
-        $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id],['role_id', '=', 1]])->first();
-        if( count($role_user) > 0 ) {
-            return true;
-        }
-        return false;
-    }
 }

@@ -46,12 +46,12 @@ class OrderController extends Controller
         $user_current->point = $order->package->price * 0.3 + $user_current->point;
         //calculator for user level higher 1
         $user_level1 = User::where('email', '=', $user_current->email_referral)->first();
-        if( count($user_level1) > 0 && $user_level1 != '' ) {
+        if( count((array)$user_level1) > 0 ) {
             $user_level1->point = $order->package->price * 0.05 + $user_level1->point;
             $user_level1->save();
             //calculator for user level higher 2
             $user_level2 = User::where('email', '=', $user_level1->email_referral)->first();
-            if( count($user_level2) > 0 && $user_level2 != '' ) {
+            if( count((array)$user_level2) > 0 ) {
                 $user_level2->point = $order->package->price * 0.05 + $user_level2->point;
                 $user_level2->save();
             } else {

@@ -22,7 +22,7 @@ class AdminController extends Controller
         if($role_user == '') {
             return false;
         }
-        if( count($role_user) > 0 && $role_user != '' ) {
+        if( count((array)$role_user) > 0) {
             return true;
         }
     }

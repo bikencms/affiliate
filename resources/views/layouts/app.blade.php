@@ -46,6 +46,65 @@ if( count((array)$role_user) > 0 ) {
         #DataTables_Table_0_wrapper .row {
             width: 100%;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        /* Zebra striping */
+        tr:nth-of-type(odd) {
+            background: #eee;
+        }
+        th {
+            background: #333;
+            color: white;
+            font-weight: bold;
+        }
+        td, th {
+            padding: 6px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        @media
+        only screen and (max-width: 760px),
+        (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+            /* Force table to not be like tables anymore */
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr { border: 1px solid #ccc; }
+
+            td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding: 10px 0 !important;
+                padding-left: 50% !important;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+            td .label {
+                padding: 10px 0 !important;
+            }
+        }
     </style>
     @stack('styles')
 </head>
@@ -180,6 +239,13 @@ if( count((array)$role_user) > 0 ) {
 <script type="text/javascript">
     $(document).ready(function () {
         $('.data-table').DataTable();
+
+        $(".alert-success").delay(2000).slideUp(200, function() {
+            $(this).alert('close');
+        });
+        $(".alert-warning").delay(2000).slideUp(200, function() {
+            $(this).alert('close');
+        });
     });
     function fallbackCopyTextToClipboard(text) {
         var textArea = document.createElement("textarea");

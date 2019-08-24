@@ -36,8 +36,9 @@ class PackageController extends Controller
         $order->id_package = $idPackpage;
 
         if($order->save()) {
-            echo '<script>localStorage.clear();</script>';
             session()->flash('flash_order_message', 1);
+            session()->flash('flash_order_id', $order->id);
+            session()->flash('flash_package', $order->package);
             return redirect('/package_success');
         } else {
             die('Something went wrong.');

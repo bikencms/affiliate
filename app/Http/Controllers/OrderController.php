@@ -56,7 +56,7 @@ class OrderController extends Controller
             }
         }
         if( $order->save() ) {
-            return redirect()->route('order', $request->get('slug'))->with('success', "Active $$order->id successfully!");
+            return redirect()->route('order', $request->get('slug'))->with('success', "Active order $order->id successfully!");
         } else {
             return redirect()->route('order', $request->get('slug'))->with('warning', 'Something went wrong!');
         }

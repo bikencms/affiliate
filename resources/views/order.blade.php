@@ -1,30 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <style>
-        /*
-           Label the data
-           */
         @media
         only screen and (max-width: 760px),
         (min-device-width: 768px) and (max-device-width: 1024px) {
-            td:nth-of-type(1):before {
-                content: "ID";
-            }
-
-            td:nth-of-type(2):before {
-                content: "User";
-            }
-
-            td:nth-of-type(3):before {
-                content: "Package";
-            }
-
-            td:nth-of-type(4):before {
-                content: "Status";
-            }
-
-            td:nth-of-type(5):before {
-                content: "Action";
+            .table {
+                max-width: none;
+                -webkit-overflow-scrolling: touch !important;
             }
         }
     </style>

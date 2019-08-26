@@ -41,6 +41,7 @@ if( count((array)$role_user) > 0 ) {
             display: inherit;
             flex-flow: inherit;
             align-items: inherit;
+            width: 100%;
         }
     </style>
     @stack('styles')

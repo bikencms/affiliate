@@ -26,6 +26,7 @@ Route::get('/package_success', function () {
 
 Route::get('/order', 'OrderController@index')->name('order');
 Route::post('/order/active', 'OrderController@active');
+Route::post('/order/delete/{id}', 'OrderController@delete');
 
 Route::get('/user', 'UserController@index')->name('user-manager');
 

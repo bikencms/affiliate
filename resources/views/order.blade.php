@@ -5,6 +5,9 @@
         only screen and (max-width: 760px),
         (min-device-width: 768px) and (max-device-width: 1024px) {
             .table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
                 -webkit-overflow-scrolling: touch !important;
             }
             .row {
@@ -50,7 +53,7 @@
                         <p>{{ \Session::get('warning') }}</p>
                     </div><br/>
                 @endif
-                <table class="table table-striped table-vcenter table-bordered data-table table-responsive">
+                <table class="table table-striped table-vcenter table-bordered data-table">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -79,6 +82,12 @@
                                         @csrf
                                         <input type="hidden" name="id_order" value="{{$order->id}}">
                                         <button type="submit" class="btn btn-block btn-success">Active</button>
+                                    </form>
+                                    <form onsubmit="return confirm('Do you continue?');"
+                                          action="{{ url('order/delete/' . $order->id) }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <button class="btn btn-block btn-secondary" type="submit">Delete</button>
                                     </form>
                                 @else
                                     #

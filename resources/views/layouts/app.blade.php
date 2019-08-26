@@ -42,10 +42,6 @@ if( count((array)$role_user) > 0 ) {
             flex-flow: inherit;
             align-items: inherit;
         }
-
-        #DataTables_Table_0_wrapper .row {
-            width: 100%;
-        }
     </style>
     @stack('styles')
 </head>

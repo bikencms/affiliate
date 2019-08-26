@@ -5,8 +5,25 @@
         only screen and (max-width: 760px),
         (min-device-width: 768px) and (max-device-width: 1024px) {
             .table {
-                max-width: none;
                 -webkit-overflow-scrolling: touch !important;
+            }
+            .row {
+                width: 100%;
+                display: block;
+                margin-right: 0;
+                margin-left: 0;
+            }
+            .container {
+                padding-right: 0;
+                padding-left: 0;
+            }
+            .col-sm-12 {
+                padding-right: 0;
+                padding-left: 0;
+            }
+            .content {
+                padding-left: 0;
+                padding-right: 0;
             }
         }
     </style>
@@ -30,7 +47,6 @@
                         <th>Email</th>
                         <th>Email Referral</th>
                         <th>Point</th>
-                        {{--<th>#</th>--}}
                     </tr>
                     </thead>
                     <tbody>

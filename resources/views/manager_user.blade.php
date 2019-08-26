@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        @media
+        only screen and (max-width: 760px),
+        (min-device-width: 768px) and (max-device-width: 1024px) {
+            .table {
+                max-width: none;
+                -webkit-overflow-scrolling: touch !important;
+            }
+        }
+    </style>
     <section class="content-header">
         <h1>
             User manager
@@ -12,7 +22,7 @@
     <section class="content">
         <div class="container">
             <div class="row">
-                <table class="table table-striped table-vcenter table-bordered data-table">
+                <table class="table table-striped table-vcenter table-bordered data-table table-responsive">
                     <thead>
                     <tr>
                         <th>ID</th>

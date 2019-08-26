@@ -29,6 +29,8 @@ Route::post('/order/active', 'OrderController@active');
 
 Route::get('/user', 'UserController@index')->name('user-manager');
 
+Route::get('/affiliate', 'AffiliateController@index')->name('affiliate');
+
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->middleware('auth');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->middleware('auth');
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->middleware('auth');

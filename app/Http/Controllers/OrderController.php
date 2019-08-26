@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\RoleUser;
 use App\Http\Controllers\AdminController as Controller;
 class OrderController extends Controller
 {
@@ -29,7 +28,7 @@ class OrderController extends Controller
         if(!$this->isAdmin()) {
             return abort(404);
         }
-        $orders = Order::all();
+        $orders = Order::orderBy('status', 'DESC')->get();
         return view('order', compact('orders'));
     }
 

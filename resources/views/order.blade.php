@@ -93,3 +93,13 @@
         </div>
     </section>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.data-table').DataTable({
+            "order": [[ 4, "desc" ]],
+            "responsive": true
+        });
+    });
+</script>
+@endpush

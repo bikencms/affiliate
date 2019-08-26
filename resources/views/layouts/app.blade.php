@@ -10,7 +10,7 @@ if( count((array)$role_user) > 0 ) {
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -45,65 +45,6 @@ if( count((array)$role_user) > 0 ) {
 
         #DataTables_Table_0_wrapper .row {
             width: 100%;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        /* Zebra striping */
-        tr:nth-of-type(odd) {
-            background: #eee;
-        }
-        th {
-            background: #333;
-            color: white;
-            font-weight: bold;
-        }
-        td, th {
-            padding: 6px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-        @media
-        only screen and (max-width: 760px),
-        (min-device-width: 768px) and (max-device-width: 1024px)  {
-
-            /* Force table to not be like tables anymore */
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
-
-            /* Hide table headers (but not display: none;, for accessibility) */
-            thead tr {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-
-            tr { border: 1px solid #ccc; }
-
-            td {
-                /* Behave  like a "row" */
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                padding: 10px 0 !important;
-                padding-left: 50% !important;
-            }
-
-            td:before {
-                /* Now like a table header */
-                position: absolute;
-                /* Top/left values mimic padding */
-                top: 6px;
-                left: 6px;
-                width: 45%;
-                padding-right: 10px;
-                white-space: nowrap;
-            }
-            td .label {
-                padding: 10px 0 !important;
-            }
         }
     </style>
     @stack('styles')
@@ -174,32 +115,36 @@ if( count((array)$role_user) > 0 ) {
         <section class="sidebar">
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">MAIN NAVIGATION</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                        <span class="pull-right-container"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('package') }}">
-                        <i class="fa fa-cubes"></i> <span>Package</span>
-                        <span class="pull-right-container"><small class="label pull-right bg-green">Hot</small></span>
-                    </a>
-                </li>
-                @if($isAdmin)
-                <li>
-                    <a href="{{ route('user-manager') }}">
-                        <i class="fa fa-user"></i> <span>User</span>
-                    </a>
-                </li>
-                @endif
-                @if($isAdmin)
-                <li>
-                    <a href="{{ route('order') }}">
-                        <i class="fa fa-money"></i> <span>Order</span>
-                    </a>
-                </li>
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <span class="pull-right-container"></span>
+                        </a>
+                    </li>
+                @if(!$isAdmin)
+                    <li>
+                        <a href="{{ route('package') }}">
+                            <i class="fa fa-cubes"></i> <span>Package</span>
+                            <span class="pull-right-container"><small class="label pull-right bg-green">Hot</small></span>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('user-manager') }}">
+                            <i class="fa fa-user"></i> <span>User</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('order') }}">
+                            <i class="fa fa-money"></i> <span>Order</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('affiliate') }}">
+                            <i class="fa fa-diamond"></i> <span>Affiliate</span>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </section>
@@ -238,8 +183,6 @@ if( count((array)$role_user) > 0 ) {
         src="//adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.data-table').DataTable();
-
         $(".alert-success").delay(2000).slideUp(200, function() {
             $(this).alert('close');
         });

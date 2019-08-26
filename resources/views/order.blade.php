@@ -51,7 +51,7 @@
                         <p>{{ \Session::get('warning') }}</p>
                     </div><br/>
                 @endif
-                <table class="table table-striped table-vcenter table-bordered data-table">
+                <table class="table table-striped table-vcenter table-bordered data-table table-responsive">
                     <thead>
                     <tr>
                         <th>ID</th>

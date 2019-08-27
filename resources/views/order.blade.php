@@ -105,7 +105,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('.data-table').DataTable({
-            "order": [[ 4, "desc" ]],
+            "order": [[ 4, "desc" ], [ 1, "asc" ]],
             "responsive": true
         });
     });

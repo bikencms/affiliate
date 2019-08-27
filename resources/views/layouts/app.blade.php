@@ -126,7 +126,23 @@ if( count((array)$role_user) > 0 ) {
                             <span class="pull-right-container"><small class="label pull-right bg-green">Hot</small></span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('profile') }}">
+                            <i class="fa fa-suitcase"></i> <span>Profile</span>
+                        </a>
+                    </li>
                 @else
+                    <li>
+                        <a href="{{ route('package') }}">
+                            <i class="fa fa-cubes"></i> <span>Package</span>
+                            <span class="pull-right-container"><small class="label pull-right bg-green">Hot</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('profile') }}">
+                            <i class="fa fa-suitcase"></i> <span>Profile</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('user-manager') }}">
                             <i class="fa fa-user"></i> <span>User</span>

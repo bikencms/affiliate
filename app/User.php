@@ -2,9 +2,9 @@
 
 namespace App;
 
+use App\Models\History;
 use App\Models\Order;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,5 +44,9 @@ class User extends Authenticatable
 
     public function orders(){
         return $this->hasMany(Order::class,'id_user','id');
+    }
+
+    public function histories(){
+        return $this->hasMany(History::class,'user_id','id');
     }
 }

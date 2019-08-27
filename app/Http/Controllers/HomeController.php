@@ -23,13 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $isAdmin = 0;
-        if($this->isAdmin()) {
-            $isAdmin = 1;
-        }
-
-        $packages = Package::all();
-        return view('package', compact('packages', 'isAdmin'));
+        return redirect('profile');
     }
 
 }

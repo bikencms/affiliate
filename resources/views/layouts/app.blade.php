@@ -131,6 +131,11 @@ if( count((array)$role_user) > 0 ) {
                             <i class="fa fa-suitcase"></i> <span>Profile</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('faq') }}">
+                            <i class="fa fa-commenting"></i> <span>FAQ</span>
+                        </a>
+                    </li>
                 @else
                     <li>
                         <a href="{{ route('package') }}">
@@ -156,6 +161,11 @@ if( count((array)$role_user) > 0 ) {
                     <li>
                         <a href="{{ route('affiliate') }}">
                             <i class="fa fa-diamond"></i> <span>Affiliate</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('faq') }}">
+                            <i class="fa fa-commenting"></i> <span>FAQ</span>
                         </a>
                     </li>
                 @endif

@@ -1,35 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        @media
-        only screen and (max-width: 760px),
-        (min-device-width: 768px) and (max-device-width: 1024px) {
-            .table {
-                display: block;
-                width: 100%;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch !important;
-            }
-            .row {
-                width: 100%;
-                display: block;
-                margin-right: 0;
-                margin-left: 0;
-            }
-            .container {
-                padding-right: 0;
-                padding-left: 0;
-            }
-            .col-sm-12 {
-                padding-right: 0;
-                padding-left: 0;
-            }
-            .content {
-                padding-left: 0;
-                padding-right: 0;
-            }
-        }
-    </style>
     <section class="content-header">
         <h1>
             User manager

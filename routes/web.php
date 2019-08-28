@@ -24,6 +24,10 @@ Route::get('/package_success', function () {
     }
 });
 
+Route::get('/package/manager', 'PackageController@manager')->name('package-manager');
+Route::post('/package/manager/create', 'PackageController@create')->name('package-create');
+Route::post('/package/manager/delete', 'PackageController@delete')->name('package-delete');
+
 Route::get('/order', 'OrderController@index')->name('order');
 Route::post('/order/active', 'OrderController@active');
 Route::post('/order/delete/{id}', 'OrderController@delete');
@@ -37,6 +41,10 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
+
+Route::get('/support', function () {
+    return view('support');
+})->name('support');
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->middleware('auth');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->middleware('auth');

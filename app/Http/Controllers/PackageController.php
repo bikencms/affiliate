@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Order;
+use Illuminate\Support\Facades\Validator;
 class PackageController extends Controller
 {
     /**
@@ -15,6 +16,14 @@ class PackageController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:50',
+            'price' => 'required|int'
+        ]);
     }
 
     /**
@@ -42,6 +51,39 @@ class PackageController extends Controller
             return redirect('/package_success');
         } else {
             die('Something went wrong.');
+        }
+    }
+
+    public function manager() {
+        $packages = Package::all();
+        return view('manager_package', compact('packages'));
+    }
+
+    public function create(Request $request) {
+        $this->validator($request->all())->validate();
+        $name = $request->get('name','');
+        $price = $request->get('price', 0);
+        if($name != '' && is_numeric($price) ) {
+            $package = new Package();
+            $package->name = $name;
+            $package->price = $price;
+            if ($package->save()) {
+                return redirect('/package/manager')->with('success', "Package $name is added successfully!");
+            } else {
+                return redirect('/package/manager')->with('warning', 'Something went wrong');
+            }
+        }
+    }
+
+    public function delete(Request $request) {
+        $id = $request->get('id', 0);
+        if($id > 0) {
+            $package = Package::find($id);
+            if ($package->delete()) {
+                return redirect('/package/manager')->with('success', "Package $package->name is deleted successfully!");
+            } else {
+                return redirect('/package/manager')->with('warning', 'Something went wrong');
+            }
         }
     }
 }

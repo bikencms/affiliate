@@ -1,12 +1,15 @@
 <?php
 use App\Models\RoleUser;
+
 $isAdmin = 0;
-$role_user = RoleUser::where([['user_id', '=', \Auth::user()->id],['role_id', '=', 1]])->first();
-if( count((array)$role_user) > 0 ) {
-    $isAdmin = 1;
+if (isset(\Auth::user()->id)) {
+    $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id], ['role_id', '=', 1]])->first();
+    if (count((array)$role_user) > 0) {
+        $isAdmin = 1;
+    }
 }
 ?>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -29,6 +32,8 @@ if( count((array)$role_user) > 0 ) {
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/iCheck/square/blue.css') }}">
 
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('vendor/adminlte/bower_components/bootstrap/less/component-animations.less') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -42,6 +47,34 @@ if( count((array)$role_user) > 0 ) {
             flex-flow: inherit;
             align-items: inherit;
             width: 100%;
+        }
+        @media
+        only screen and (max-width: 760px),
+        (min-device-width: 768px) and (max-device-width: 1024px) {
+            .table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .row {
+                width: 100%;
+                display: block;
+                margin-right: 0;
+                margin-left: 0;
+            }
+            .container {
+                padding-right: 0;
+                padding-left: 0;
+            }
+            .col-sm-12 {
+                padding-right: 0;
+                padding-left: 0;
+            }
+            .content {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
     </style>
     @stack('styles')
@@ -64,10 +97,10 @@ if( count((array)$role_user) > 0 ) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-        @guest
+            @guest
             <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
             <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
-        @else
+            @else
             <!-- Sidebar toggle button-->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
@@ -100,7 +133,7 @@ if( count((array)$role_user) > 0 ) {
                         </li>
                     </ul>
                 </div>
-            @endguest
+                @endguest
         </nav>
     </header>
 
@@ -112,18 +145,19 @@ if( count((array)$role_user) > 0 ) {
         <section class="sidebar">
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            <span class="pull-right-container"></span>
-                        </a>
-                    </li>
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <span class="pull-right-container"></span>
+                    </a>
+                </li>
                 @if(!$isAdmin)
                     <li>
                         <a href="{{ route('package') }}">
                             <i class="fa fa-cubes"></i> <span>Package</span>
-                            <span class="pull-right-container"><small class="label pull-right bg-green">Hot</small></span>
+                            <span class="pull-right-container"><small
+                                        class="label pull-right bg-green">Hot</small></span>
                         </a>
                     </li>
                     <li>
@@ -136,12 +170,26 @@ if( count((array)$role_user) > 0 ) {
                             <i class="fa fa-commenting"></i> <span>FAQ</span>
                         </a>
                     </li>
-                @else
                     <li>
-                        <a href="{{ route('package') }}">
-                            <i class="fa fa-cubes"></i> <span>Package</span>
-                            <span class="pull-right-container"><small class="label pull-right bg-green">Hot</small></span>
+                        <a href="{{ route('support') }}">
+                            <i class="fa fa-support"></i> <span>Support</span>
                         </a>
+                    </li>
+                @else
+
+                    <li class="treeview active menu-open">
+                        <a href="#">
+                            <i class="fa fa-cubes"></i>
+                            <span>Package</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('package') }}"><i class="fa fa-circle-o"></i> Buy <span class="pull-right-container"><small
+                                                class="label pull-right bg-green">Hot</small></span></a></li>
+                            <li><a href="{{ route('package-manager') }}"><i class="fa fa-circle-o"></i> Manager</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{ route('profile') }}">
@@ -166,6 +214,11 @@ if( count((array)$role_user) > 0 ) {
                     <li>
                         <a href="{{ route('faq') }}">
                             <i class="fa fa-commenting"></i> <span>FAQ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('support') }}">
+                            <i class="fa fa-support"></i> <span>Support</span>
                         </a>
                     </li>
                 @endif
@@ -206,10 +259,10 @@ if( count((array)$role_user) > 0 ) {
         src="//adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".alert-success").delay(2000).slideUp(200, function() {
+        $(".alert-success").delay(2000).slideUp(200, function () {
             $(this).alert('close');
         });
-        $(".alert-warning").delay(2000).slideUp(200, function() {
+        $(".alert-warning").delay(2000).slideUp(200, function () {
             $(this).alert('close');
         });
     });

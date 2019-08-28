@@ -1,13 +1,5 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-@import 'adminlte';
-
 .navbar, .navbar>.container, .navbar>.container-fluid {
   display: inherit;
   flex-wrap: inherit;
@@ -18,4 +10,5 @@
 .navbar-static-top .nav-link {
   float: right;
   padding: 1.5rem 1rem;
+  color: white;
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Order;
 use Illuminate\Support\Facades\Validator;
-class PackageController extends Controller
+class PackageController extends AdminController
 {
     /**
      * Create a new controller instance.
@@ -55,11 +55,17 @@ class PackageController extends Controller
     }
 
     public function manager() {
+        if(!$this->isAdmin()) {
+            abort(404);
+        }
         $packages = Package::all();
         return view('manager_package', compact('packages'));
     }
 
     public function create(Request $request) {
+        if(!$this->isAdmin()) {
+            abort(404);
+        }
         $this->validator($request->all())->validate();
         $name = $request->get('name','');
         $price = $request->get('price', 0);
@@ -76,6 +82,9 @@ class PackageController extends Controller
     }
 
     public function delete(Request $request) {
+        if(!$this->isAdmin()) {
+            abort(404);
+        }
         $id = $request->get('id', 0);
         if($id > 0) {
             $package = Package::find($id);

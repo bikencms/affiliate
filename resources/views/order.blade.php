@@ -60,7 +60,9 @@
                                         <button class="btn btn-block btn-secondary" type="submit">Delete</button>
                                     </form>
                                 @else
-                                    #
+                                    <a href="{{ route('affiliate', [ 'id' => $package->id ]) }}" class="btn bg-olive" data-toggle="tooltip" title="Edit">
+                                        <i class="fa fa-pencil"></i> Edit
+                                    </a>
                                 @endif
                             </td>
                         </tr>

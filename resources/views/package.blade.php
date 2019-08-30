@@ -30,7 +30,7 @@
                 <div class="col-lg-3 col-xs-6">
                     <div class="small-box @if(isset($packages[$key])) {{ $robot[$key]['bg'] }} @else bg-green @endif ">
                         <div class="inner">
-                            <h3>{{ $package->price }}$</h3>
+                            <h3>{{ $package->price == 0 ? 'Liên hệ' : $package->price . '$' }}</h3>
                             <p>{{ $package->name }}</p>
                             <p><?= $package->description ?></p>
                         </div>

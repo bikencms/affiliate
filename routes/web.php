@@ -36,8 +36,8 @@ Route::post('/order/delete/{id}', 'OrderController@delete');
 
 Route::get('/user', 'UserController@index')->name('user-manager');
 
-Route::get('/affiliate', 'AffiliateController@index')->name('affiliate');
-Route::post('/affiliate', 'AffiliateController@bonus')->name('affiliate-bonus');
+Route::get('/affiliate/{order_id}', 'AffiliateController@index')->name('affiliate');
+Route::post('/affiliate-bonus', 'AffiliateController@bonus')->name('affiliate-bonus');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 

@@ -26,84 +26,77 @@
                     <p>{{ \Session::get('info') }}</p>
                 </div><br/>
             @endif
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label>Select month</label>
-                        <?php $current_year = date('Y');  ?>
-                        <form action="{{route('affiliate')}}" method="GET">
-                            <select class="form-control" onchange="form.submit()" name="month">
-                                <option value="">#</option>
-                                <?php for($i = 1; $i <= 12; $i++): ?>
-                                <?php if($i > 9) : ?>
-                                <option value="<?php echo "$current_year-$i" ?>" <?php if(app('request')->input('month') == "$current_year-$i" ) echo 'selected' ?>><?php echo "$i/$current_year" ?></option>
-                                <?php else : ?>
-                                <option value="<?php echo "$current_year-0$i" ?>" <?php if(app('request')->input('month') == "$current_year-0$i" ) echo 'selected' ?>><?php echo "0$i/$current_year" ?></option>
-                                <?php endif; ?>
-                                <?php endfor; ?>
-                            </select>
-                        </form>
+            @if($order->count() > 0 )
+                <form action="{{ route('affiliate-bonus') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="order_id" value="{{ $order->id }}">
+                    <div class="row">
+                        <div class="callout callout-info col-sm-12">
+                            <p>Thông tin gói {{ $order->id }} được hoa hồng</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            @if(app('request')->input('month') && $packages->count() > 0 )
-            <form action="{{route('affiliate-bonus')}}" method="post">
-                <input type="hidden" name="month" value="{{app('request')->input('month')}}">
-            @csrf
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group @error('id_package') has-error @enderror">
-                        @error('id_package')
-                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
-                            with
-                            error</label>
-                        @enderror
-                        <label>Select package</label>
-                        <select class="form-control" name="package_id">
-                            @foreach( $packages as $package )
-                            <option value="{{$package->id_package}}">{{ $package->package->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('id_package')
-                        <span class="help-block">{{ $message }}</span>
-                        @enderror
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="fa fa-rocket"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">{{ $order->package->name }}</span>
+                                    <span class="info-box-number">{{ $order->package->price }}$</span>
+                                    <span>{{ $order->user->email }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group @error('f1') has-error @enderror">
-                        @error('f1')
-                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
-                            with
-                            error</label>
-                        @enderror
-                        <label>Bonus F1</label>
-                        <input type="number" name="f1" placeholder="Bonus F1" class="form-control" value="{{ old('f1') }}">
-                        @error('f1')
-                        <span class="help-block">{{ $message }}</span>
-                        @enderror
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Select month</label>
+                                <?php $current_year = date('Y'); $current_month = date('Y-m'); ?>
+                                <select class="form-control" onchange="form.submit()" name="month">
+                                    <?php for($i = 1; $i <= 12; $i++): ?>
+                                    <?php if($i > 9) : ?>
+                                    <option value="<?php echo "$current_year-$i" ?>" <?= $current_month == "$current_year-$i" ? 'selected' : '' ?> ><?php echo "$i/$current_year" ?></option>
+                                    <?php else : ?>
+                                    <option value="<?php echo "$current_year-0$i" ?>" <?= $current_month == "$current_year-0$i" ? 'selected' : '' ?> ><?php echo "0$i/$current_year" ?></option>
+                                    <?php endif; ?>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group @error('f2') has-error @enderror">
-                        @error('f2')
-                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
-                            with
-                            error</label>
-                        @enderror
-                        <label>Bonus F2</label>
-                        <input type="number" name="f2" placeholder="Bonus F2" class="form-control" value="{{ old('f2') }}">
-                        @error('f2')
-                        <span class="help-block">{{ $message }}</span>
-                        @enderror
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Bonus F1</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="number" class="form-control" placeholder="Bonus F1" name="f1">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-info pull-left btn-confirm" data-toggle="tooltip" title="Save">Save</button>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Bonus F2</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="number" class="form-control" placeholder="Bonus F2" name="f2">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            </form>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info pull-left btn-confirm" data-toggle="tooltip"
+                                        title="Save">Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             @endif
         </div>
     </section>

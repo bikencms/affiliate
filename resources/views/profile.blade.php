@@ -68,7 +68,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Lợi Nhuận Gói</span>
-                            <span class="info-box-number">{{ $packageSum }}$</span>
+                            <span class="info-box-number">{{ $packageSumBonus }}$</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

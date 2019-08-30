@@ -26,14 +26,10 @@ class ProfileController extends Controller
     public function index()
     {
         $histories = History::orderBy('created_at', 'DESC')->where('user_id', \Auth::user()->id)->get();
-        $packageQuantity = Order::where('id_user', \Auth::user()->id)->where('status', 1)->count();
-        $package = DB::select('select sum(price) as packageSum from orders o left join packages p on o.id_package = p.id left join users u on u.id = o.id_user where o.status = 1 and u.id ='. \Auth::user()->id);
-        $packageSum = 0;
-        if($package[0]->packageSum != '') {
-            $packageSum = $package[0]->packageSum;
-        }
-        $affiliateSum = History::where('user_id', \Auth::user()->id)->sum('price');
-        return view('profile', compact('histories', 'packageQuantity', 'packageSum', 'affiliateSum'));
+        $packageQuantity = Order::where('id_user', \Auth::user()->id)->whereIn('status', [1,2])->count();
+        $packageSumBonus = History::where('user_id', \Auth::user()->id)->where('type', 1)->sum('price');
+        $affiliateSum = History::where('user_id', \Auth::user()->id)->where('type', 0)->sum('price');
+        return view('profile', compact('histories', 'packageQuantity', 'affiliateSum', 'packageSumBonus'));
     }
 
 }

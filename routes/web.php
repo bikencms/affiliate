@@ -41,6 +41,8 @@ Route::post('/affiliate-bonus', 'AffiliateController@bonus')->name('affiliate-bo
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
+Route::post('/user/delete/{id}', 'UserController@delete')->name('user-delete');
+
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
@@ -48,6 +50,7 @@ Route::get('/faq', function () {
 Route::get('/support', function () {
     return view('support');
 })->name('support');
+
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->middleware('auth');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->middleware('auth');

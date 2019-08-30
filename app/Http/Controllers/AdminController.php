@@ -28,13 +28,14 @@ class AdminController extends Controller
         }
     }
 
-    public function saveHistory($price = 0, $reason = null, $order_id = 0, $user_id = 0, $user_ref_id = 0) {
+    public function saveHistory($price = 0, $reason = null, $order_id = 0, $user_id = 0, $user_ref_id = 0, $type = 0) {
         $history = new History();
         $history->price = $price;
         $history->reason = $reason;
         $history->order_id = $order_id;
         $history->user_id = $user_id;
         $history->user_ref_id = $user_ref_id;
+        $history->type = $type;
         $history->save();
     }
 }

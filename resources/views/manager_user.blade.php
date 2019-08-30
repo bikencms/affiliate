@@ -42,6 +42,16 @@
     <section class="content">
         <div class="container">
             <div class="row">
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <p>{{ \Session::get('success') }}</p>
+                    </div><br/>
+                @endif
+                @if (\Session::has('warning'))
+                    <div class="alert alert-warning">
+                        <p>{{ \Session::get('warning') }}</p>
+                    </div><br/>
+                @endif
                 <table class="table table-striped table-vcenter table-bordered data-table">
                     <thead>
                     <tr>
@@ -50,6 +60,7 @@
                         <th>Email</th>
                         <th>Email Referral</th>
                         <th>Point</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -60,6 +71,12 @@
                             <td class="font-w600">{{ $user->email }}</td>
                             <td class="font-w600">{{ isset($user->email_referral) ? $user->email_referral : '#' }}</td>
                             <td class="font-w600 text-success">{{ $user->point }}</td>
+                            <td>
+                                <form onsubmit="return confirm('Do you continue?');" action="{{ route('user-delete', ['id' => $user->id ]) }}" method="POST" style="display: inline-block">
+                                    @csrf
+                                    <button class="btn bg-maroon" type="submit" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i> Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

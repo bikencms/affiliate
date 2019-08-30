@@ -72,8 +72,10 @@
                             <td class="font-w600">
                                 @if( $order->status == 0 )
                                     <span class="text-red">Pending</span>
-                                @else
+                                @elseif( $order->status == 1 )
                                     <span class="text-green">Active</span>
+                                @else
+                                    <span class="text-blue">Rewarded</span>
                                 @endif
                             </td>
                             <td>
@@ -83,17 +85,17 @@
                                         <input type="hidden" name="id_order" value="{{$order->id}}">
                                         <button type="submit" class="btn btn-block btn-success">Active</button>
                                     </form>
+                                @elseif( $order->status == 1 )
+                                    <a href="{{ route('affiliate', [ 'id' => $order->id ]) }}" class="btn btn-block bg-olive" data-toggle="tooltip" title="Affiliate bonus">
+                                        Affiliate bonus
+                                    </a>
+                                @endif
                                     <form onsubmit="return confirm('Do you continue?');"
                                           action="{{ url('order/delete/' . $order->id) }}" method="POST">
                                         @csrf
                                         @method('POST')
                                         <button class="btn btn-block btn-secondary" type="submit">Delete</button>
                                     </form>
-                                @else
-                                    <a href="{{ route('affiliate', [ 'id' => $order->id ]) }}" class="btn bg-olive" data-toggle="tooltip" title="Affiliate bonus">
-                                        Affiliate bonus
-                                    </a>
-                                @endif
                             </td>
                         </tr>
                     @endforeach

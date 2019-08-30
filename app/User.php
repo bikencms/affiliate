@@ -49,4 +49,13 @@ class User extends Authenticatable
     public function histories(){
         return $this->hasMany(History::class,'user_id','id');
     }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) {
+            $user->orders()->delete();
+            $user->histories()->delete();
+        });
+    }
 }

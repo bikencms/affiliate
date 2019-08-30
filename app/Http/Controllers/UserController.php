@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RoleUser;
 use App\User;
 use App\Http\Controllers\AdminController as Controller;
+use Illuminate\Support\Facades\DB;
+
 class UserController extends Controller
 {
     /**
@@ -27,7 +28,19 @@ class UserController extends Controller
         if(!$this->isAdmin()) {
             return abort(404);
         }
-        $users = User::all();
+        $users = DB::table("users")->select('*')
+            ->whereNOTIn('id',function($query){
+                $query->select('user_id')->from('role_users');
+            })
+            ->get();
         return view('manager_user', compact('users'));
+    }
+
+    public function delete($id = 0) {
+        $user = User::find($id);
+        $user->orders()->delete();
+        $user->histories()->delete();
+        $user->delete();
+        return redirect('user')->with('success', 'User ' . $id . ' has been  deleted successfully!');
     }
 }

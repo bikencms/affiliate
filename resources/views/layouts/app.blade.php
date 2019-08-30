@@ -207,11 +207,6 @@ if (isset(\Auth::user()->id)) {
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('affiliate') }}">
-                            <i class="fa fa-diamond"></i> <span>Affiliate</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('faq') }}">
                             <i class="fa fa-commenting"></i> <span>FAQ</span>
                         </a>
@@ -263,6 +258,9 @@ if (isset(\Auth::user()->id)) {
             $(this).alert('close');
         });
         $(".alert-warning").delay(2000).slideUp(200, function () {
+            $(this).alert('close');
+        });
+        $(".alert-info").delay(2000).slideUp(200, function () {
             $(this).alert('close');
         });
     });

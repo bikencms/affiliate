@@ -21,13 +21,13 @@
                     <p>{{ \Session::get('warning') }}</p>
                 </div><br/>
             @endif
-            <form method="post" action="{{ route('package-create') }}">
+            <form method="post" action="{{ route('package-update', [ 'id' => $package->id ]) }}">
                 @csrf
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <!-- Horizontal Form -->
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Package add</h3>
+                            <h3 class="box-title">Package edit</h3>
                         </div>
                         <div class="box-body">
                             <div class="form-group has-feedback @error('name') has-error @enderror">
@@ -38,7 +38,7 @@
                                 @enderror
                                 <div class="input-group">
                                     <span class="input-group-addon">#</span>
-                                    <input type="text" class="form-control" placeholder="{{ __('Name') }}" name="name" required autocomplete="name">
+                                    <input type="text" class="form-control" placeholder="{{ __('Name') }}" name="name" required autocomplete="name" value="{{ $package->name }}">
                                 </div>
                                 @error('name')
                                 <span class="help-block">{{ $message }}</span>
@@ -52,17 +52,17 @@
                                 @enderror
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-                                    <input type="number" class="form-control" placeholder="{{ __('Price') }}" name="price" required autocomplete="price">
+                                    <input type="number" class="form-control" placeholder="{{ __('Price') }}" name="price" required autocomplete="price" value="{{ $package->price }}">
                                 </div>
                                 @error('price')
                                 <span class="help-block">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Description" name="description">{{ $package->description }}</textarea>
                             </div>
                             <div class="input-group">
-                                <button type="submit" class="btn btn-info pull-right btn-confirm" data-toggle="tooltip" title="Save">Save</button>
+                                <button type="submit" class="btn btn-info pull-right" data-toggle="tooltip" title="Save">Save</button>
                             </div>
                             <!-- /input-group -->
                         </div>
@@ -70,43 +70,6 @@
                     </div>
                 </div>
             </form>
-            <div class="col-md-9">
-                <table class="table table-striped table-vcenter table-bordered data-table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($packages as $package)
-                        <tr>
-                            <td class="font-w600">{{ $package->id }}</td>
-                            <td class="font-w600">{{ $package->name }} </td>
-                            <td class="font-w600">{{ $package->price }}$</td>
-                            <td class="font-w600">
-                                <a href="{{ route('package-edit', [ 'id' => $package->id ]) }}" class="btn bg-olive" data-toggle="tooltip" title="Edit">
-                                    <i class="fa fa-pencil"></i> Edit
-                                </a>
-                                <form onsubmit="return confirm('Do you continue?');" action="{{ route('package-delete', ['id' => $package->id ]) }}" method="POST" style="display: inline-block">
-                                    @csrf
-                                    <button class="btn bg-maroon" type="submit" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i> Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
         </div>
     </section>
 @endsection
-@push('scripts')
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.data-table').DataTable({"responsive": true});
-    });
-</script>
-@endpush

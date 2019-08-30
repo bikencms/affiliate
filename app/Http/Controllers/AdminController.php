@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\RoleUser;
+use App\Models\History;
 class AdminController extends Controller
 {
     /**
@@ -25,5 +26,15 @@ class AdminController extends Controller
         if( count((array)$role_user) > 0) {
             return true;
         }
+    }
+
+    public function saveHistory($price = 0, $reason = null, $order_id = 0, $user_id = 0, $user_ref_id = 0) {
+        $history = new History();
+        $history->price = $price;
+        $history->reason = $reason;
+        $history->order_id = $order_id;
+        $history->user_id = $user_id;
+        $history->user_ref_id = $user_ref_id;
+        $history->save();
     }
 }

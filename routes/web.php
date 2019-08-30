@@ -27,6 +27,8 @@ Route::get('/package_success', function () {
 Route::get('/package/manager', 'PackageController@manager')->name('package-manager');
 Route::post('/package/manager/create', 'PackageController@create')->name('package-create');
 Route::post('/package/manager/delete', 'PackageController@delete')->name('package-delete');
+Route::get('/package/manager/edit/{id}', 'PackageController@edit')->name('package-edit');
+Route::post('/package/manager/update/{id}', 'PackageController@update')->name('package-update');
 
 Route::get('/order', 'OrderController@index')->name('order');
 Route::post('/order/active', 'OrderController@active');
@@ -35,6 +37,7 @@ Route::post('/order/delete/{id}', 'OrderController@delete');
 Route::get('/user', 'UserController@index')->name('user-manager');
 
 Route::get('/affiliate', 'AffiliateController@index')->name('affiliate');
+Route::post('/affiliate', 'AffiliateController@bonus')->name('affiliate-bonus');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 

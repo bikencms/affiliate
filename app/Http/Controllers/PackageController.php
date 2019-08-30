@@ -69,10 +69,13 @@ class PackageController extends AdminController
         $this->validator($request->all())->validate();
         $name = $request->get('name','');
         $price = $request->get('price', 0);
+        $description = $request->get('description', '');
+
         if($name != '' && is_numeric($price) ) {
             $package = new Package();
             $package->name = $name;
             $package->price = $price;
+            $package->description = $description;
             if ($package->save()) {
                 return redirect('/package/manager')->with('success', "Package $name is added successfully!");
             } else {
@@ -90,6 +93,41 @@ class PackageController extends AdminController
             $package = Package::find($id);
             if ($package->delete()) {
                 return redirect('/package/manager')->with('success', "Package $package->name is deleted successfully!");
+            } else {
+                return redirect('/package/manager')->with('warning', 'Something went wrong');
+            }
+        }
+    }
+
+    public function edit($id = 0) {
+        if($id > 0) {
+            $package = Package::find($id);
+            return view('manager_package_edit', compact('package'));
+        } else {
+            abort(404);
+        }
+    }
+
+    public function update(Request $request, $id = 0) {
+        if(!$this->isAdmin()) {
+            abort(404);
+        }
+        if($id == 0) {
+            abort(404);
+        }
+
+        $this->validator($request->all())->validate();
+        $name = $request->get('name','');
+        $price = $request->get('price', 0);
+        $description = $request->get('description', '');
+
+        if($name != '' && is_numeric($price) ) {
+            $package = Package::find($id);
+            $package->name = $name;
+            $package->price = $price;
+            $package->description = $description;
+            if ($package->save()) {
+                return redirect('/package/manager')->with('success', "Package $name is edited successfully!");
             } else {
                 return redirect('/package/manager')->with('warning', 'Something went wrong');
             }

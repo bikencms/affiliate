@@ -68,22 +68,38 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 @error('f1') has-error @enderror">
+                            @error('f1')
+                            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
+                                with
+                                error</label>
+                            @enderror
                             <label>Bonus F1</label>
                             <div class="input-group">
                                 <span class="input-group-addon">$</span>
-                                <input type="number" class="form-control" placeholder="Bonus F1" name="f1">
+                                <input type="number" class="form-control" placeholder="Bonus F1" name="f1" value="{{ old('f1') }}" required autocomplete="f1">
                             </div>
+                            @error('f1')
+                            <span class="help-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 @error('f2') has-error @enderror">
+                            @error('f2')
+                            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
+                                with
+                                error</label>
+                            @enderror
                             <label>Bonus F2</label>
                             <div class="input-group">
                                 <span class="input-group-addon">$</span>
-                                <input type="number" class="form-control" placeholder="Bonus F2" name="f2">
+                                <input type="number" class="form-control" placeholder="Bonus F2" name="f2" value="{{ old('f2') }}" required autocomplete="f2">
                             </div>
+                            @error('f2')
+                            <span class="help-block">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <br>

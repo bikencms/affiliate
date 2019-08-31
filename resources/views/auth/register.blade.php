@@ -58,6 +58,18 @@
                 <span class="help-block">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="form-group has-feedback @error('phone') has-error @enderror">
+                @error('phone')
+                <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
+                    error</label>
+                @enderror
+                <input type="number" class="form-control" placeholder="{{ __('Phone') }}" name="phone"
+                       value="{{ old('phone') }}" required autocomplete="phone" maxlength="14">
+                <span class="fa  fa-mobile-phone form-control-feedback"></span>
+                @error('phone')
+                <span class="help-block">{{ $message }}</span>
+                @enderror
+            </div>
             <div class="form-group has-feedback @error('email') has-error @enderror">
                 @error('email')
                 <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with

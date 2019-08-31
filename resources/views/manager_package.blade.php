@@ -23,7 +23,7 @@
             @endif
             <form method="post" action="{{ route('package-create') }}">
                 @csrf
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <!-- Horizontal Form -->
                     <div class="box box-info">
                         <div class="box-header with-border">
@@ -62,7 +62,7 @@
                                 <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea>
                             </div>
                             <div class="input-group">
-                                <button type="submit" class="btn btn-info pull-right btn-confirm" data-toggle="tooltip" title="Save">Save</button>
+                                <button type="submit" class="btn btn-info pull-left btn-confirm" data-toggle="tooltip" title="Save">Save</button>
                             </div>
                             <!-- /input-group -->
                         </div>

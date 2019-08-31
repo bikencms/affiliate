@@ -10644,6 +10644,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  font-size: 1.5rem;
+}
+
 .navbar,
 .navbar > .container,
 .navbar > .container-fluid {

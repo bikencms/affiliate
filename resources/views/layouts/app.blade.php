@@ -18,8 +18,9 @@ if (isset(\Auth::user()->id)) {
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Affiliate website | Dashboard Control panel</title>
+    <title>Robot-rfx.com | Dashboard Control panel</title>
 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
@@ -40,7 +41,6 @@ if (isset(\Auth::user()->id)) {
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         #DataTables_Table_0_wrapper, #DataTables_Table_0_wrapper .row {
             display: inherit;
@@ -118,8 +118,8 @@ if (isset(\Auth::user()->id)) {
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="treeview">
-                    <a href="#">
+                <li>
+                    <a href="{{ route('profile') }}">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         <span class="pull-right-container"></span>
                     </a>
@@ -133,11 +133,6 @@ if (isset(\Auth::user()->id)) {
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('profile') }}">
-                            <i class="fa fa-suitcase"></i> <span>Profile</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('faq') }}">
                             <i class="fa fa-commenting"></i> <span>FAQ</span>
                         </a>
@@ -148,7 +143,6 @@ if (isset(\Auth::user()->id)) {
                         </a>
                     </li>
                 @else
-
                     <li class="treeview active menu-open">
                         <a href="#">
                             <i class="fa fa-cubes"></i>
@@ -162,11 +156,6 @@ if (isset(\Auth::user()->id)) {
                                                 class="label pull-right bg-green">Hot</small></span></a></li>
                             <li><a href="{{ route('package-manager') }}"><i class="fa fa-circle-o"></i> Manager</a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="{{ route('profile') }}">
-                            <i class="fa fa-suitcase"></i> <span>Profile</span>
-                        </a>
                     </li>
                     <li>
                         <a href="{{ route('user-manager') }}">

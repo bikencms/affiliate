@@ -33,8 +33,9 @@ class PackageController extends AdminController
      */
     public function index()
     {
-        $packages = Package::all();
-        return view('package', compact('packages'));
+        $packageFree = Package::where('price', 0)->get();
+        $packageFee = Package::where('price', '>', 0)->get();
+        return view('package', compact('packageFree', 'packageFee'));
     }
 
     public function addPackage(Request $request) {

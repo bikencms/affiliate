@@ -44,20 +44,28 @@ class OrderController extends Controller
         $packagePrice = $order->package->price;
         //calculator point
         $user_current = User::find($order->user->id);
-        //calculator for user level higher 1
+        //calculator for user level 1
         $user_level1 = User::where('email', '=', $user_current->email_referral)->first();
         if( count((array)$user_level1) > 0 ) {
             $user_level1->point = $order->package->price * 0.3 + $user_level1->point;
             $user_level1->save();
             //add history bonus level 1
             $this->saveHistory($order->package->price * 0.3, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $user_level1->id, $order->user->id);
-            //calculator for user level higher 2
+            //calculator for user level 2
             $user_level2 = User::where('email', '=', $user_level1->email_referral)->first();
             if( count((array)$user_level2) > 0 ) {
                 $user_level2->point = $order->package->price * 0.05 + $user_level2->point;
                 $user_level2->save();
                 //add history bonus level 2
                 $this->saveHistory($order->package->price * 0.05, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $user_level2->id, $order->user->id);
+                $user_level3 = User::where('email', '=', $user_level2->email_referral)->first();
+                //calculator for user level 3
+                if( count((array)$user_level3) > 0 ) {
+                    $user_level3->point = $order->package->price * 0.05 + $user_level3->point;
+                    $user_level3->save();
+                    //add history bonus level 2
+                    $this->saveHistory($order->package->price * 0.05, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $user_level3->id, $order->user->id);
+                }
             }
         }
         if( $order->save() ) {

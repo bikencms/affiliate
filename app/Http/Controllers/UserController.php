@@ -33,6 +33,10 @@ class UserController extends Controller
                 $query->select('user_id')->from('role_users');
             })
             ->get();
+//        foreach ($users as $key => $user) {
+//            $user->referral_tree = $this->showTree($users, $user->email_referral);
+//        }
+
         return view('manager_user', compact('users'));
     }
 
@@ -42,5 +46,22 @@ class UserController extends Controller
         $user->histories()->delete();
         $user->delete();
         return redirect('user')->with('success', 'User ' . $id . ' has been  deleted successfully!');
+    }
+
+    public function showTree($users, $email_referral = '')
+    {
+        $data = [];
+        foreach ($users as $key => $user) {
+            if ($user->email == $email_referral) {
+                $result = [
+                    "id" =>  $user->email,
+                    "parent" => $user->email_referral,
+                    "text" => (array)$user->email,
+                ];
+                array_push($data, $result);
+                $this->showTree($users, $user->email_referral);
+            }
+        }
+        return $data;
     }
 }

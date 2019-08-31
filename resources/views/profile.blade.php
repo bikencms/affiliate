@@ -69,7 +69,6 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#activity" data-toggle="tab">Packages</a></li>
                             <li><a href="#timeline" data-toggle="tab">History</a></li>
-                            <li><a href="#settings" data-toggle="tab">Settings</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="activity">
@@ -114,10 +113,6 @@
                             </div>
                             <div class="tab-pane" id="timeline">
                                 <div class="content">
-                                    <div class="callout callout-info col-sm-12 bg-yellow">
-                                        <p>Lịch sử</p>
-                                    </div>
-
                                     <table class="table table-striped table-vcenter table-bordered data-table">
                                         <thead>
                                         <tr>
@@ -138,48 +133,16 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="settings">
-                                <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label for="inputName" class="col-sm-2 control-label">Full name</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputName" placeholder="Full name" value="{{ Auth::user()->name }}" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="{{ Auth::user()->email }}" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputName" class="col-sm-2 control-label">Phone</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="inputName" placeholder="Phone" value="{{ Auth::user()->phone }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputExperience" class="col-sm-2 control-label">Bank account</label>
-
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" id="inputExperience" placeholder="Bank account"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
                             <!-- /.tab-pane -->
                         </div>
                         <!-- /.tab-content -->
                     </div>
                     <!-- /.nav-tabs-custom -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-info btn-min-width btn-glow mr-1 mb-0" style="height: 60px;width: 100%">{{__('RÚT TIỀN')}}</button>
                 </div>
             </div>
         </div>

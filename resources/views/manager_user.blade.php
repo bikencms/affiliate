@@ -58,8 +58,8 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Email Referral</th>
                         <th>Point</th>
+                        <th>Referral tree</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -69,8 +69,10 @@
                             <td class="font-w600">{{ $user->id }}</td>
                             <td class="font-w600">{{ $user->name }} </td>
                             <td class="font-w600">{{ $user->email }}</td>
-                            <td class="font-w600">{{ isset($user->email_referral) ? $user->email_referral : '#' }}</td>
                             <td class="font-w600 text-success">{{ $user->point }}</td>
+                            <td class="font-w600">
+                                <div id="treeBroker"></div>
+                            </td>
                             <td>
                                 <form onsubmit="return confirm('Do you continue?');" action="{{ route('user-delete', ['id' => $user->id ]) }}" method="POST" style="display: inline-block">
                                     @csrf
@@ -85,7 +87,70 @@
         </div>
     </section>
 @endsection
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
+@endpush
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
+<script>
+
+    var data = [
+        {
+            "id": "minhbiken",
+            "parent": "#",
+            "text": "minhbiken@gmail.com",
+            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
+            'state' : {'opened': true}
+        },
+        {
+            "id": "minhbiken1",
+            "parent": "minhbiken",
+            "text": "minhbiken1",
+            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
+            'state' : {'opened': true}
+        },
+        {
+            "id": "minhbiken3",
+            "parent": "minhbiken",
+            "text": "minhbiken3",
+            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
+            'state' : {'opened': true}
+        },
+        {
+            "id": "minhbiken8",
+            "parent": "minhbiken1",
+            "text": "minhbiken8",
+            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
+            'state' : {'opened': true}
+        },
+        {
+            "id": "minhbiken4",
+            "parent": "minhbiken1",
+            "text": "minhbiken4",
+            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
+            'state' : {'opened': true}
+        },
+        {
+            "id": "minhbiken6",
+            "parent": "minhbiken3",
+            "text": "minhbiken6",
+            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
+            'state' : {'opened': true}
+        },
+        {
+            "id": "minhbiken7",
+            "parent": "minhbiken4",
+            "text": "minhbiken7",
+            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
+            'state' : {'opened': true}
+        },
+    ];
+    $('#treeBroker').jstree({
+        'core': {
+            'data': data
+        }
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.data-table').DataTable({"responsive": true});

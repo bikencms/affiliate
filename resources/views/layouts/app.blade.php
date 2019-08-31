@@ -35,7 +35,10 @@ if (isset(\Auth::user()->id)) {
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/bower_components/bootstrap/less/component-animations.less') }}">
-
+    <!-- Data Table -->
+    <link rel="stylesheet"
+          href="{{ asset('vendor/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+    <!-- Data Table -->
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -75,35 +78,12 @@ if (isset(\Auth::user()->id)) {
             @else
             <!-- Sidebar toggle button-->
                 <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ asset('vendor/adminlte/dist/img/avatar5.png') }}" class="user-image"
-                                     alt="User Image">
-                                <span class="hidden-xs">{{ Auth::user()->email }} | <span class="text-success">{{ Auth::user()->point }}
-                                        point</span></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header">
-                                    <p class="text-success">{{ Auth::user()->point }} point</p>
-                                    <p class="text-success">{{ URL::to('/register?email_referral='.Auth::user()->email) }}</p>
-                                    <button onclick="copyTextToClipboard('{{url('/')}}/register?email_referral={{ Auth::user()->email }}');"
-                                            class="btn btn-success btn-min-width btn-glow mr-1 mb-0">{{__('Copy clipboard')}}</button>
-                                </li>
-                                <li class="user-footer">
-                                    <div class="pull-right">
-                                        <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <a href="{{ route('logout') }}" class="btn btn-flat text-white btn-warning" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                          style="display: none;">
+                        @csrf
+                    </form>
                 </div>
                 @endguest
         </nav>
@@ -119,7 +99,7 @@ if (isset(\Auth::user()->id)) {
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li>
-                    <a href="{{ route('profile') }}">
+                    <a href="{{ route('dashboard') }}">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         <span class="pull-right-container"></span>
                     </a>
@@ -130,6 +110,11 @@ if (isset(\Auth::user()->id)) {
                             <i class="fa fa-cubes"></i> <span>Package</span>
                             <span class="pull-right-container"><small
                                         class="label pull-right bg-green">Hot</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('profile') }}">
+                            <i class="fa fa-suitcase"></i> <span>Profile</span>
                         </a>
                     </li>
                     <li>
@@ -156,6 +141,11 @@ if (isset(\Auth::user()->id)) {
                                                 class="label pull-right bg-green">Hot</small></span></a></li>
                             <li><a href="{{ route('package-manager') }}"><i class="fa fa-circle-o"></i> Manager</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('profile') }}">
+                            <i class="fa fa-suitcase"></i> <span>Profile</span>
+                        </a>
                     </li>
                     <li>
                         <a href="{{ route('user-manager') }}">
@@ -204,15 +194,10 @@ if (isset(\Auth::user()->id)) {
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/demo.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
-
-<!-- Data Table -->
-<link rel="stylesheet"
-      href="//adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<!-- Data Table -->
 <script type="text/javascript"
-        src="//adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+        src="{{ asset('vendor/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript"
-        src="//adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        src="{{ asset('vendor/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".alert-success").delay(2000).slideUp(200, function () {

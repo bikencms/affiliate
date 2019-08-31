@@ -51,6 +51,8 @@ Route::get('/support', function () {
     return view('support');
 })->name('support');
 
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->middleware('auth');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->middleware('auth');

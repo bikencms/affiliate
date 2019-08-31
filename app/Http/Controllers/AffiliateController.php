@@ -64,20 +64,28 @@ class AffiliateController extends Controller
                 $user_current->point = $bonus + $user_current->point;
                 $user_current->save();
                 $this->saveHistory($bonus, "Lãi hàng tháng từ gói $packageName $packagePrice\$", $order->id, $user_current->id, 0, 1);
-                //calculator for user level higher 1
+                //calculator for user level 1
                 $user_level1 = User::where('email', '=', $user_current->email_referral)->first();
                 if( $user_level1 != '' ) {
                     $user_level1->point = $bonus * 0.3 + $user_level1->point;
                     $user_level1->save();
                     //add history bonus level 1
                     $this->saveHistory($bonus * 0.3, "Lãi hoa hồng hàng tháng", $order->id, $user_level1->id, $order->id_user);
-                    //calculator for user level higher 2
+                    //calculator for user level 2
                     $user_level2 = User::where('email', '=', $user_level1->email_referral)->first();
                     if( $user_level2 != '' ) {
                         $user_level2->point = $bonus * 0.05 + $user_level2->point;
                         $user_level2->save();
                         //add history bonus level 2
                         $this->saveHistory($bonus * 0.05, "Lãi hoa hồng hàng tháng", $order->id, $user_level2->id, $order->id_user);
+                        //calculator for user level 3
+                        $user_level3 = User::where('email', '=', $user_level2->email_referral)->first();
+                        if( $user_level3 != '' ) {
+                            $user_level3->point = $bonus * 0.05 + $user_level3->point;
+                            $user_level3->save();
+                            //add history bonus level 3
+                            $this->saveHistory($bonus * 0.05, "Lãi hoa hồng hàng tháng", $order->id, $user_level3->id, $order->id_user);
+                        }
                     }
                 }
             } else {

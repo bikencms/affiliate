@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\History;
 use App\Http\Controllers\AdminController as Controller;
 use App\Models\Order;
-use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     /**

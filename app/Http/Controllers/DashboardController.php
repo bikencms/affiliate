@@ -23,6 +23,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        if(!$this->isAdmin()) {
+            return abort(404);
+        }
         return view('dashboard');
     }
 

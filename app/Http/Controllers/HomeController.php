@@ -23,7 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect('dashboard');
+        $isAdmin = 0;
+        if (isset(\Auth::user()->id)) {
+            $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id], ['role_id', '=', 1]])->first();
+            if (count((array)$role_user) > 0) {
+                return redirect('dashboard');
+            }
+        }
+
+        return redirect('profile');
     }
 
 }

@@ -38,7 +38,11 @@
 
     <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>
-
+        @error('email_referral')
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div><br/>
+        @enderror
         <form method="post" action="{{ route('register') }}">
             @csrf
             <input type="hidden" name="email_referral" value="{{ app('request')->input('email_referral') }}">

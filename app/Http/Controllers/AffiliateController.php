@@ -57,6 +57,7 @@ class AffiliateController extends Controller
             $order = Order::where('created_at', 'like', "%{$month}%")->where('status', 1)->where('id', $order_id)->first();
             if( $order != '' ) {
                 $order->status = 2;
+                $order->save();
                 $packageName = $order->package->name;
                 $packagePrice = $order->package->price;
                 $user_current = User::find($order->id_user);
@@ -77,8 +78,6 @@ class AffiliateController extends Controller
                         $user_level2->save();
                         //add history bonus level 2
                         $this->saveHistory($bonus * 0.05, "Lãi hoa hồng hàng tháng", $order->id, $user_level2->id, $order->id_user);
-                    } else {
-                        return redirect('/affiliate/'. $order_id)->with('warning', "Something went wrong");
                     }
                 }
             } else {

@@ -115,6 +115,7 @@
     </section>
 @endsection
 @push('scripts')
+<script type="text/javascript" src="{{ 'vendor/adminlte/bower_components/chart.js/Chart.js' }}"></script>
 <script type="text/javascript">
     $(function () {
         // Get context with jQuery - using jQuery's .get() method.

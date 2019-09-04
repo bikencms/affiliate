@@ -100,15 +100,20 @@ if (isset(\Auth::user()->id)) {
                 <li class="header">MAIN NAVIGATION</li>
                 @if(!$isAdmin)
                     <li>
+                        <a href="{{ route('profile') }}">
+                            <i class="fa fa-suitcase"></i> <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('profile-show-tree') }}">
+                            <i class="fa fa-tree"></i> <span>Show Tree</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('package') }}">
                             <i class="fa fa-cubes"></i> <span>Package</span>
                             <span class="pull-right-container"><small
                                         class="label pull-right bg-green">Hot</small></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('profile') }}">
-                            <i class="fa fa-suitcase"></i> <span>Profile</span>
                         </a>
                     </li>
                     <li>
@@ -119,6 +124,11 @@ if (isset(\Auth::user()->id)) {
                     <li>
                         <a href="{{ route('support') }}">
                             <i class="fa fa-support"></i> <span>Support</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('setting') }}">
+                            <i class="fa fa-gears"></i> <span>Setting</span>
                         </a>
                     </li>
                 @else
@@ -148,6 +158,11 @@ if (isset(\Auth::user()->id)) {
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('profile-show-tree') }}">
+                            <i class="fa fa-tree"></i> <span>Show Tree</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('user-manager') }}">
                             <i class="fa fa-user"></i> <span>User</span>
                         </a>
@@ -165,6 +180,11 @@ if (isset(\Auth::user()->id)) {
                     <li>
                         <a href="{{ route('support') }}">
                             <i class="fa fa-support"></i> <span>Support</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('setting') }}">
+                            <i class="fa fa-gears"></i> <span>Setting</span>
                         </a>
                     </li>
                 @endif
@@ -190,7 +210,6 @@ if (isset(\Auth::user()->id)) {
 </div>
 <script src="{{ asset('vendor/adminlte/bower_components/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('vendor/adminlte/bower_components/chart.js/Chart.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/demo.js') }}"></script>

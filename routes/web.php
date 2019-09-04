@@ -41,6 +41,9 @@ Route::get('/affiliate/{order_id}', 'AffiliateController@index')->name('affiliat
 Route::post('/affiliate-bonus', 'AffiliateController@bonus')->name('affiliate-bonus');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile/show-tree', 'ProfileController@showTree')->name('profile-show-tree');
+Route::get('/setting', 'ProfileController@setting')->name('setting');
+Route::post('/setting', 'ProfileController@saveSetting')->name('setting');
 
 Route::post('/user/delete/{id}', 'UserController@delete')->name('user-delete');
 

@@ -35,78 +35,34 @@
     </style>
     <section class="content">
         <section class="content-header">
+            <h1>
+                User Profile
+            </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">User profile</li>
             </ol>
-            <br>
-            <h1>
-                User Profile
-            </h1>
         </section>
         <div class="content">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="box box-solid">
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <div class="box-group" id="accordion">
-                                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                        <div class="panel box box-primary">
-                                            <div class="box-header with-border">
-                                                <h4 class="box-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion"
-                                                       href="#collapseOne">
-                                                        Information
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse in">
-                                                <div class="box-body">
-                                                    <!-- Profile Image -->
 
-                                                    <div class="box-body box-profile">
-                                                        <img class="profile-user-img img-responsive img-circle"
-                                                             src="{{ 'vendor/adminlte/dist/img/user4-128x128.jpg' }}"
-                                                             alt="User profile picture">
-                                                        <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
-                                                        <p class="text-muted text-center text-red">{{Auth::user()->point}}
-                                                            $</p>
-                                                        <p class="text-success text-center">
-                                                            {{ URL::to('/register?email_referral='.Auth::user()->email) }}
-                                                            <br><br>
-                                                            <button onclick="copyTextToClipboard('{{url('/')}}/register?email_referral={{ Auth::user()->email }}');"
-                                                                    class="btn btn-success btn-min-width btn-glow mr-1 mb-0">{{__('Copy clipboard')}}</button>
-                                                        </p>
-                                                    </div>
-                                                    <!-- /.box-body -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel box box-danger">
-                                            <div class="box-header with-border">
-                                                <h4 class="box-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion"
-                                                       href="#collapseTwo">
-                                                        Referral Tree
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="box-body">
-                                                    <div id="treeBroker"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="{{ 'vendor/adminlte/dist/img/user4-128x128.jpg' }}" alt="User profile picture">
+                            <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
+                            <p class="text-muted text-center text-red">{{Auth::user()->point}}$</p>
+                            <p class="text-success text-center">
+                                {{ URL::to('/register?email_referral='.Auth::user()->email) }}
+                                <br><br>
+                                <button onclick="copyTextToClipboard('{{url('/')}}/register?email_referral={{ Auth::user()->email }}');"
+                                        class="btn btn-success btn-min-width btn-glow mr-1 mb-0">{{__('Copy clipboard')}}</button>
+                            </p>
                         </div>
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
                 </div>
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
@@ -131,8 +87,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12">
                                         <div class="info-box">
-                                            <span class="info-box-icon bg-yellow"><i
-                                                        class="fa fa-slideshare"></i></span>
+                                            <span class="info-box-icon bg-yellow"><i class="fa fa-slideshare"></i></span>
 
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Lợi Nhuận Gói</span>
@@ -185,11 +140,9 @@
                     <!-- /.nav-tabs-custom -->
                 </div>
             </div>
-            <br>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-info btn-min-width btn-glow mr-1 mb-0"
-                            style="height: 60px;width: 100%">{{__('RÚT TIỀN')}}</button>
+                    <button class="btn btn-info btn-min-width btn-glow mr-1 mb-0" style="height: 60px;width: 100%">{{__('RÚT TIỀN')}}</button>
                 </div>
             </div>
         </div>
@@ -201,28 +154,4 @@
         $('.data-table').DataTable({"responsive": true});
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
-<script>
-
-    var data = [
-
-            @foreach($trees as $key => $tree)
-        {
-            "id": "{{$tree->email}}",
-            "parent": "{{ $key == 0 ? '#' : $tree->email_referral }}",
-            "text": "{{ $tree->email }}",
-            "icon": "http://onichub.local/avatar/default_avatar_tree.png",
-            'state': {'opened': true, {{ ($tree->email == $user->email ? "selected: true" : "") }}}
-        },
-        @endforeach
-    ];
-    $('#treeBroker').jstree({
-        'core': {
-            'data': data
-        }
-    });
-</script>
-@endpush
-@push('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css"/>
 @endpush

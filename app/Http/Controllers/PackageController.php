@@ -33,9 +33,8 @@ class PackageController extends AdminController
      */
     public function index()
     {
-        $packageFree = Package::where('price', 0)->get();
         $packageFee = Package::where('price', '>', 0)->get();
-        return view('package', compact('packageFree', 'packageFee'));
+        return view('package', compact('packageFee'));
     }
 
     public function addPackage(Request $request) {
@@ -92,6 +91,7 @@ class PackageController extends AdminController
         $id = $request->get('id', 0);
         if($id > 0) {
             $package = Package::find($id);
+            $package->orders()->delete();
             if ($package->delete()) {
                 return redirect('/package/manager')->with('success', "Package $package->name is deleted successfully!");
             } else {

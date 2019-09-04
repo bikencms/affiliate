@@ -120,29 +120,29 @@
         var areaChartCanvas = $('#areaChart').get(0).getContext('2d');
         // This will get the first returned node in the jQuery collection.
         var areaChart       = new Chart(areaChartCanvas);
-
+        <?php $currentYear = date('Y'); ?>
         var areaChartData = {
-            labels  : ['January 2019', 'February 2019', 'March 2018', 'April 2019', 'May 2019', 'June 2019', 'July 2019'],
+            labels  : [ "January {{$currentYear}}", "February {{$currentYear}}", "March {{$currentYear}}", "April {{$currentYear}}", "May {{$currentYear}}", "June {{$currentYear}}", "July {{$currentYear}}", "August {{$currentYear}}", "September {{$currentYear}}", "October {{$currentYear}}", "November {{$currentYear}}", "December {{$currentYear}}"],
             datasets: [
                 {
-                    label               : 'Electronics',
+                    label               : 'Lợi nhuận',
                     fillColor           : 'rgba(210, 214, 222, 1)',
                     strokeColor         : 'rgba(210, 214, 222, 1)',
                     pointColor          : 'rgba(210, 214, 222, 1)',
                     pointStrokeColor    : '#c1c7d1',
                     pointHighlightFill  : '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data                : [65, 59, 80, 81, 56, 55, 40]
+                    data                : [ @foreach($bonusMonths as $bonusMonth) {{$bonusMonth}}, @endforeach ]
                 },
                 {
-                    label               : 'Digital Goods',
+                    label               : 'Hoa hồng',
                     fillColor           : 'rgba(60,141,188,0.9)',
                     strokeColor         : 'rgba(60,141,188,0.8)',
                     pointColor          : '#3b8bba',
                     pointStrokeColor    : 'rgba(60,141,188,1)',
                     pointHighlightFill  : '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data                : [28, 48, 40, 19, 86, 27, 90]
+                    data                : [ @foreach($affiliateMonths as $affiliateMonth) {{$affiliateMonth}}, @endforeach ]
                 }
             ]
         }

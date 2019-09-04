@@ -33,9 +33,41 @@ class DashboardController extends Controller
         $countPackageNonActive = DB::table('orders')->where('status', 0)->count();
         $countPackage = DB::table('orders')->where('status', 0)->orWhere('status', 1)->count();
 
-        $bonus = DB::table('histories')->where('user_ref_id', 0)->select('*', DB::raw('SUM(price) as total_sales'))->get();
-
-        return view('dashboard', compact('countUser', 'countPackageActive', 'countPackageNonActive', 'countPackage'));
+        $currentYear = date('Y');
+        $bonusMonths = [];
+        $affiliateMonths = [];
+        for( $i = 1; $i <= 12; $i++ ) {
+            if($i > 9) {
+                $monthYear = $currentYear . '-' . $i;
+                $bonus = DB::table('histories')->where('user_ref_id', 0)->where('created_at', 'like', "%{$monthYear}%")->select('*', DB::raw('SUM(price) as total_sales'))->get();
+                if($bonus[0]->total_sales != '') {
+                    array_push($bonusMonths, $bonus[0]->total_sales);
+                } else {
+                    array_push($bonusMonths, 0);
+                }
+                $affiliate = DB::table('histories')->where('user_ref_id', '!=', 0)->where('created_at', 'like', "%{$monthYear}%")->select('*', DB::raw('SUM(price) as total_sales'))->get();
+                if($affiliate[0]->total_sales != '') {
+                    array_push($affiliateMonths, $affiliate[0]->total_sales);
+                } else {
+                    array_push($affiliateMonths, 0);
+                }
+            } else {
+                $monthYear = $currentYear . '-0' . $i;
+                $bonus = DB::table('histories')->where('user_ref_id', 0)->where('created_at', 'like', "%{$monthYear}%")->select('*', DB::raw('SUM(price) as total_sales'))->get();
+                if($bonus[0]->total_sales != '') {
+                    array_push($bonusMonths, $bonus[0]->total_sales);
+                } else {
+                    array_push($bonusMonths, 0);
+                }
+                $affiliate = DB::table('histories')->where('user_ref_id', '!=', 0)->where('created_at', 'like', "%{$monthYear}%")->select('*', DB::raw('SUM(price) as total_sales'))->get();
+                if($affiliate[0]->total_sales != '') {
+                    array_push($affiliateMonths, $affiliate[0]->total_sales);
+                } else {
+                    array_push($affiliateMonths, 0);
+                }
+            }
+        }
+        return view('dashboard', compact('countUser', 'countPackageActive', 'countPackageNonActive', 'countPackage', 'bonusMonths', 'affiliateMonths'));
     }
 
 }

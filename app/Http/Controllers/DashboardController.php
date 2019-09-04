@@ -29,9 +29,9 @@ class DashboardController extends Controller
             return abort(404);
         }
         $countUser = DB::table('users')->count();
-        $countPackageActive = DB::table('orders')->where('status', 1)->count();
+        $countPackageActive = DB::table('orders')->where('status', 1)->orWhere('status', 2)->count();
         $countPackageNonActive = DB::table('orders')->where('status', 0)->count();
-        $countPackage = DB::table('orders')->where('status', 0)->orWhere('status', 1)->count();
+        $countPackage = $countPackageActive + $countPackageNonActive;
 
         $currentYear = date('Y');
         $bonusMonths = [];

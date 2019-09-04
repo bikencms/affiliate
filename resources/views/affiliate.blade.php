@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <section class="content-header">
-        <h1>
-            Affiliate
-        </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
             <li class="active">Affiliate</li>
         </ol>
+        <br>
+        <h1>
+            Affiliate
+        </h1>
     </section>
     <section class="content">
         <div class="container">

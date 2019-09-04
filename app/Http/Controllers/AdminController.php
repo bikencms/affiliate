@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\RoleUser;
 use App\Models\History;
+use App\User;
 class AdminController extends Controller
 {
     /**
@@ -37,5 +38,15 @@ class AdminController extends Controller
         $history->user_ref_id = $user_ref_id;
         $history->type = $type;
         $history->save();
+    }
+
+    public function getParent($user) {
+        $data = User::where('email', '=', $user->email_referral)->first();
+        return $data;
+    }
+
+    public function getChildren($user) {
+        $data = User::where('email_referral', '=', $user->email)->first();
+        return $data;
     }
 }

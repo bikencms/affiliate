@@ -35,6 +35,7 @@ Route::post('/order/active', 'OrderController@active');
 Route::post('/order/delete/{id}', 'OrderController@delete');
 
 Route::get('/user', 'UserController@index')->name('user-manager');
+Route::get('/user/show-tree/{id}', 'UserController@showTree')->name('show-tree');
 
 Route::get('/affiliate/{order_id}', 'AffiliateController@index')->name('affiliate');
 Route::post('/affiliate-bonus', 'AffiliateController@bonus')->name('affiliate-bonus');

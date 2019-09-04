@@ -6,15 +6,16 @@
         }
     </style>
     <section class="content-header">
-        <h1>
-            Package
-            <small>Thank you</small>
-        </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
             <li>Package</li>
             <li class="active">Thank you</li>
         </ol>
+        <br>
+        <h1>
+            Package
+            <small>Thank you</small>
+        </h1>
     </section>
     <section class="content">
         <div class="container">

@@ -1,13 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <section class="content-header">
-        <h1>
-            Package manager
-        </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li class="active">Package manager</li>
+            <li>Package manager</li>
+            <li class="active">Edit</li>
         </ol>
+        <br>
+        <h1>
+            Package manager / Edit
+        </h1>
     </section>
     <section class="content">
         <div class="row">

@@ -2,13 +2,14 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Support
-        </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
             <li class="active">Support</li>
         </ol>
+        <br>
+        <h1>
+            Support
+        </h1>
     </section>
     <section class="content">
         <div class="container">

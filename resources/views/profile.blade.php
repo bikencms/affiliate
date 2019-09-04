@@ -51,33 +51,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-
-                    <!-- Profile Image -->
-                    <div class="box box-primary">
-                        <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle"
-                                 src="{{ 'vendor/adminlte/dist/img/user4-128x128.jpg' }}" alt="User profile picture">
-                            <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
-                            <p class="text-muted text-center text-red">{{Auth::user()->point}}$</p>
-                            <p class="text-success text-center">
-                                {{ URL::to('/register?email_referral='.Auth::user()->email) }}
-                                <br><br>
-                                <button onclick="copyTextToClipboard('{{url('/')}}/register?email_referral={{ Auth::user()->email }}');"
-                                        class="btn btn-success btn-min-width btn-glow mr-1 mb-0">{{__('Copy clipboard')}}</button>
-                            </p>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="callout callout-info col-sm-12">
-                    <p>Packages</p>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-green"><i class="fa fa-rocket"></i></span>
@@ -117,6 +90,41 @@
             </div>
             <div class="row">
                 <div class="callout callout-info col-sm-12">
+                    <p>Information</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle"
+                                 src="{{ 'vendor/adminlte/dist/img/user4-128x128.jpg' }}" alt="User profile picture">
+                            <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
+                            <p class="text-muted text-center text-red">{{Auth::user()->point}}$</p>
+                            <p class="text-success text-center">
+                                {{ URL::to('/register?email_referral='.Auth::user()->email) }}
+                                <br><br>
+                                <button onclick="copyTextToClipboard('{{url('/')}}/register?email_referral={{ Auth::user()->email }}');"
+                                        class="btn btn-success btn-min-width btn-glow mr-1 mb-0">{{__('Copy clipboard')}}</button>
+                            </p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success"
+                            style="height: 60px;width: 100%">{{__('RÚT TIỀN')}}</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+
+            </div>
+            <div class="row">
+                <div class="callout callout-info col-sm-12">
                     <p>History</p>
                 </div>
             </div>
@@ -144,13 +152,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-info btn-min-width btn-glow mr-1 mb-0"
-                        style="height: 60px;width: 100%">{{__('RÚT TIỀN')}}</button>
-            </div>
-        </div>
         </div>
     </section>
 @endsection

@@ -19,7 +19,7 @@ if (isset(\Auth::user()->id)) {
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Robot-rfx.com | Dashboard Control panel</title>
-
+    <link rel="shortcut icon" href="{{ asset('assets/image/logo.png') }}" type="image/x-icon" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">

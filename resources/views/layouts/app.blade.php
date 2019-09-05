@@ -60,9 +60,9 @@ if (isset(\Auth::user()->id)) {
         <!-- Logo -->
         <a href="/" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>Affiliate</b> Website</span>
+            <span class="logo-mini"><img src="{{ asset('assets/image/logo.png') }}" alt="Logo" width="100%"></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Affiliate</b> Website</span>
+            <span class="logo-lg"><img src="{{ asset('assets/image/logo.png') }}" alt="Logo" width="100%"></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">

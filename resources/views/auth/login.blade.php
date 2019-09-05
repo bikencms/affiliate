@@ -34,7 +34,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="/"><b>Affiliate website</b></a>
+        <a href="/"><img src="{{ asset('assets/image/logo.png') }}" alt="Logo"></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

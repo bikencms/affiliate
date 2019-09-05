@@ -10667,3 +10667,17 @@ body {
   padding-top: 5px;
 }
 
+.main-header .logo {
+  height: 74px !important;
+}
+
+@media (max-width: 767px) {
+  .main-header {
+    max-height: inherit !important;
+  }
+
+  .main-header .logo {
+    height: 100% !important;
+  }
+}
+

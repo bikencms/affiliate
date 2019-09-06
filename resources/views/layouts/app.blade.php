@@ -1,6 +1,5 @@
 <?php
 use App\Models\RoleUser;
-
 $isAdmin = 0;
 if (isset(\Auth::user()->id)) {
     $role_user = RoleUser::where([['user_id', '=', \Auth::user()->id], ['role_id', '=', 1]])->first();
@@ -9,7 +8,7 @@ if (isset(\Auth::user()->id)) {
     }
 }
 ?>
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -18,7 +17,7 @@ if (isset(\Auth::user()->id)) {
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Robot-rfx.com | Dashboard Control panel</title>
+    <title> Hệ Thống Robot giao dịch ngoại hối | Robox-rfx.com</title>
     <link rel="shortcut icon" href="{{ asset('assets/image/logo.png') }}" type="image/x-icon" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap 3.3.7 -->
@@ -62,7 +61,7 @@ if (isset(\Auth::user()->id)) {
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><img src="{{ asset('assets/image/logo.png') }}" alt="Logo" width="100%"></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><img src="{{ asset('assets/image/logo.png') }}" alt="Logo" width="100%"></span>
+            <span class="logo-lg"><img src="{{ asset('assets/image/logo.png') }}" alt="Logo" width="50%"></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -101,17 +100,17 @@ if (isset(\Auth::user()->id)) {
                 @if(!$isAdmin)
                     <li>
                         <a href="{{ route('profile') }}">
-                            <i class="fa fa-suitcase"></i> <span>Profile</span>
+                            <i class="fa fa-suitcase"></i> <span>Trang Chủ</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('profile-show-tree') }}">
-                            <i class="fa fa-tree"></i> <span>Show Tree</span>
+                            <i class="fa fa-tree"></i> <span>Mạng Lưới</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('package') }}">
-                            <i class="fa fa-cubes"></i> <span>Package</span>
+                            <i class="fa fa-cubes"></i> <span>Gói Robot</span>
                             <span class="pull-right-container"><small
                                         class="label pull-right bg-green">Hot</small></span>
                         </a>
@@ -123,12 +122,12 @@ if (isset(\Auth::user()->id)) {
                     </li>
                     <li>
                         <a href="{{ route('support') }}">
-                            <i class="fa fa-support"></i> <span>Support</span>
+                            <i class="fa fa-support"></i> <span>Hỗ Trợ</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('setting') }}">
-                            <i class="fa fa-gears"></i> <span>Setting</span>
+                            <i class="fa fa-gears"></i> <span>Cài Đặt</span>
                         </a>
                     </li>
                 @else
@@ -204,7 +203,7 @@ if (isset(\Auth::user()->id)) {
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019 <a href="/">Affiliate</b> Website</a>.</strong> All rights
+        <strong>Copyright &copy; 2019 <a href="/">Hệ Thống</b> Robot-rfx.com</a>.</strong> All rights
         reserved.
     </footer>
 </div>

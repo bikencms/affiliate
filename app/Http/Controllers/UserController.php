@@ -55,28 +55,7 @@ class UserController extends Controller
         $user = User::find($id);
         $trees = [];
         if( $user != '' ) {
-            $parent = $this->getParent($user);
-            if( $parent != '' ) {
-                $parent2 = $this->getParent($parent);
-                if( $parent2 != '' ) {
-                    $parent3 = $this->getParent($parent2);
-                    if( $parent3 != '' ) {
-                        array_push($trees, $parent3);
-                        array_push($trees, $parent2);
-                        array_push($trees, $parent);
-                        array_push($trees, $user);
-                    } else {
-                        array_push($trees, $parent2);
-                        array_push($trees, $parent);
-                        array_push($trees, $user);
-                    }
-                } else {
-                    array_push($trees, $parent);
-                    array_push($trees, $user);
-                }
-            } else {
-                array_push($trees, $user);
-            }
+            array_push($trees, $user);
             $children = $this->getChildren($user);
             if( $children != '' ) {
                 $children2 = $this->getChildren($children);

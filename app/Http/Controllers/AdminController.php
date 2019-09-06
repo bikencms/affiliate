@@ -40,11 +40,6 @@ class AdminController extends Controller
         $history->save();
     }
 
-    public function getParent($user) {
-        $data = User::where('email', '=', $user->email_referral)->first();
-        return $data;
-    }
-
     public function getChildren($user) {
         $data = User::where('email_referral', '=', $user->email)->first();
         return $data;

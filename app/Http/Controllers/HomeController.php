@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\RoleUser;
-use App\Models\Package;
 use App\Http\Controllers\AdminController as Controller;
 class HomeController extends Controller
 {
@@ -30,6 +29,10 @@ class HomeController extends Controller
             }
         }
         return redirect('profile');
+    }
+
+    public function home() {
+        return view('home');
     }
 
 }

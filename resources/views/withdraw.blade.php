@@ -125,7 +125,6 @@
                     <!-- /.info-box -->
                 </div>
             </div>
-            <!-- /.Thống kê use -->
             <!-- Phần avatar và thông tin  -->
             <div class="row">
                 <div class="col-md-4">
@@ -156,10 +155,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="box box-widget">
-                            <a class="btn btn-success" style="width: 100%; font-weight: bold; display: inline-block"
-                               href="{{ route('withdraw') }}">RÚT TIỀN</a>
                         </div>
                     </div>
                     <div class="modal modal-warning fade" id="modal-warning">
@@ -193,18 +188,17 @@
 
                 <!-- Phần Thông báo Admin  -->
                 <div class="col-md-8">
-                    <p><a href="https://www.exness.com/a/ukc699pc">
+                    <p>
+                        <a href="https://www.exness.com/a/ukc699pc">
                             <img src="https://www.exness.com/media/banners/vi/static/728x90_VI_Withdrawal_Instant_Wallet_StandardBlue.png"
                                  width="100%" height="auto"/>
-                        </a></p>
+                        </a>
+                    </p>
                     <!-- Box Comment -->
                     <div class="box box-widget">
                         <div class="box-header with-border">
                             <div class="user-block">
-                                <img class="img-circle" src="{{ 'vendor/adminlte/dist/img/user4-128x128.jpg' }}"
-                                     alt="User profile picture">
-                                <span class="username"><a href="#">Thông báo từ Admin</a></span>
-                                <span class="description">Vừa xong </span>
+                                <h2>hông tin tài khoản</h2>
                             </div>
                             <!-- /.user-block -->
                             <div class="box-tools">
@@ -221,26 +215,17 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <!-- post text -->
-                            <p>
-                                Thanh toán hoa hồng từ hệ thống sẽ được phát hành vào thứ 3 và thứ 5 hàng tuần. Lệnh
-                                thanh toán sẽ được xử lý trong vòng 24h sau khi nhận được yêu cầu</p>
 
-                            <p>
-                                Các gói robot với khoản đầu tư dưới 4160$ đang được cập nhật nâng cấp trong phiên bản
-                                tiếp theo của chúng tôi. </p>
-                            <p>Vui lòng kiên nhẫn</p>
                         </div>
                     </div>
                     <!-- /.Phần Thông báo Admin  -->
                 </div>
             </div>
-            <br>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Lịch sử Hệ Thống</h3>
+                            <h3 class="box-title">Lịch sử Rút Tiền</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -249,17 +234,17 @@
                                 <tr>
                                     <th>Ngày Tháng</th>
                                     <th>Số Tiền</th>
-                                    <th>Lý do phát sinh</th>
+                                    <th>Trạng thái</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach( $histories as $history )
-                                    <tr>
-                                        <td class="font-w600">{{ $history->created_at->format('d/m/Y') }}</td>
-                                        <td class="font-w600">{{ $history->price == 0 ? '#' : '+'.$history->price }}</td>
-                                        <td class="font-w600">{{ $history->reason }} {{ $history->user_ref_id == 0 ? '' : 'từ ' . $history->userRef->email }} </td>
-                                    </tr>
-                                @endforeach
+                                <tr>
+                                    <td class="font-w600">08/2019</td>
+                                    <td class="font-w600">300$</td>
+                                    <td class="font-w600">
+                                        Đang chờ...
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

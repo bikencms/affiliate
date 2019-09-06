@@ -13,6 +13,7 @@
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@home')->name('home-index');
 
 Route::get('/package', 'PackageController@index')->name('package');
 Route::get('/add-package', 'PackageController@addPackage')->name('add-package');
@@ -56,7 +57,7 @@ Route::get('/support', function () {
 })->name('support');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
+Route::get('/withdraw', 'WithdrawController@index')->name('withdraw');
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->middleware('auth');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->middleware('auth');

@@ -32,31 +32,45 @@
     </style>
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li>User manager</li>
-            <li class="active">Referral Tree</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+            <li>Quản lý người dùng</li>
+            <li class="active">Quản lý mạng lưới</li>
         </ol>
         <br>
-        <h1>
-            Referral Tree
-        </h1>
+        <h4>
+            QUẢN LÝ MẠNG LƯỚI
+        </h4>
     </section>
     <section class="content">
         <div class="container">
             <div class="row">
-                @if (\Session::has('success'))
-                    <div class="alert alert-success">
-                        <p>{{ \Session::get('success') }}</p>
-                    </div><br/>
-                @endif
-                @if (\Session::has('warning'))
-                    <div class="alert alert-warning">
-                        <p>{{ \Session::get('warning') }}</p>
-                    </div><br/>
-                @endif
-            </div>
-            <div class="row">
-                <div id="treeBroker"></div>
+                <div class="col-md-11">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <i class="fa fa-group"></i>
+
+                            <h5 class="box-title"> DANH SÁCH CẤP DƯỚI CỦA BẠN</h5>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+
+                            @if (\Session::has('success'))
+                                <div class="alert alert-success">
+                                    <p>{{ \Session::get('success') }}</p>
+                                </div><br/>
+                            @endif
+                            @if (\Session::has('warning'))
+                                <div class="alert alert-warning">
+                                    <p>{{ \Session::get('warning') }}</p>
+                                </div><br/>
+                            @endif
+
+                        </div>
+                        <div class="row">
+                            <div id="treeBroker"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

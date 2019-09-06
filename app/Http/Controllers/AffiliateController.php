@@ -58,12 +58,9 @@ class AffiliateController extends Controller
             if( $order != '' ) {
                 $order->status = 2;
                 $order->save();
-                $packageName = $order->package->name;
-                $packagePrice = $order->package->price;
                 $user_current = User::find($order->id_user);
                 $user_current->point = $bonus + $user_current->point;
                 $user_current->save();
-                $this->saveHistory($bonus, "Lãi hàng tháng từ gói $packageName $packagePrice\$", $order->id, $user_current->id, 0, 1);
                 //calculator for user level 1
                 $user_level1 = User::where('email', '=', $user_current->email_referral)->first();
                 if( $user_level1 != '' ) {

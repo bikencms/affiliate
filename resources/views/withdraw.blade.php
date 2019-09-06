@@ -196,26 +196,114 @@
                     </p>
                     <!-- Box Comment -->
                     <div class="box box-widget">
-                        <div class="box-header with-border">
-                            <div class="user-block">
-                                <h2>hông tin tài khoản</h2>
-                            </div>
-                            <!-- /.user-block -->
-                            <div class="box-tools">
-                                <button type="button" class="btn btn-box-tool" data-toggle="tooltip"
-                                        title="Mark as read">
-                                    <i class="fa fa-circle-o"></i></button>
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
-                                            class="fa fa-times"></i></button>
-                            </div>
-                            <!-- /.box-tools -->
-                        </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form action="{{ route('withdraw-review') }}" method="post" autocomplete="off">
+                                        @csrf
+                                        @if (\Session::has('success'))
+                                            <div class="alert alert-success">
+                                                <p>{{ \Session::get('success') }}</p>
+                                            </div><br/>
+                                        @endif
+                                        @if (\Session::has('warning'))
+                                            <div class="alert alert-warning">
+                                                <p>{{ \Session::get('warning') }}</p>
+                                            </div><br/>
+                                        @endif
+                                        <div class="box box-info">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Số tiền muốn rút</h3>
+                                                <div class="box-tools">
+                                                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip"
+                                                            title="Mark as read">
+                                                        <i class="fa fa-circle-o"></i></button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                                                class="fa fa-minus"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                                                class="fa fa-times"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="box-body">
+                                                <div class="input-group @error('point') has-error @enderror">
+                                                    <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                                                    @error('point')
+                                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
+                                                        error</label>
+                                                    @enderror
+                                                    <input type="number" class="form-control" placeholder="Nhập số tiền lớn hơn 50$" name="point" autocomplete="point">
+                                                    @error('point')
+                                                    <span class="help-block">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <div class="box box-primary">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Thông tin tài khoản</h3>
+                                                <div class="box-tools">
+                                                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip"
+                                                            title="Mark as read">
+                                                        <i class="fa fa-circle-o"></i></button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                                                class="fa fa-minus"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                                                class="fa fa-times"></i></button>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+                                            <div class="box-body">
+                                                <div class="form-group @error('user_bank') has-error @enderror">
+                                                    <label>Họ tên đầy đủ</label>
+                                                    @error('user_bank')
+                                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
+                                                        error</label>
+                                                    @enderror
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Ví du: Nguyễn Văn Phú" autocomplete="user_bank" name="user_bank">
+                                                    @error('user_bank')
+                                                    <span class="help-block">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group @error('name_bank') has-error @enderror">
+                                                    <label>Tên ngân hàng, chi nhánh</label>
+                                                    @error('name_bank')
+                                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
+                                                        error</label>
+                                                    @enderror
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Ví du: Vietcombank, chi nhánh Hà Nội" autocomplete="name_bank" name="name_bank">
+                                                    @error('name_bank')
+                                                    <span class="help-block">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group @error('account_bank') has-error @enderror">
+                                                    <label>Số tài khoản</label>
+                                                    @error('account_bank')
+                                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
+                                                        error</label>
+                                                    @enderror
+                                                    <input type="number" class="form-control"
+                                                           placeholder="Ví du: 00710007716482 " autocomplete="account_bank" name="account_bank">
+                                                    @error('account_bank')
+                                                    <span class="help-block">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
 
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-primary btn-confirm">RÚT</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- /.Phần Thông báo Admin  -->
@@ -254,6 +342,7 @@
 
                 </div>
             </div>
+        </div>
     </section>
 @endsection
 @push('scripts')

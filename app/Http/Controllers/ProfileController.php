@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\History;
 use App\Http\Controllers\AdminController as Controller;
 use App\Models\Order;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 class ProfileController extends Controller

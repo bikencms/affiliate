@@ -1,19 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Models\History;
+use App\Models\Order;
 
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@home')->name('home-index');
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
 Route::get('/package', 'PackageController@index')->name('package');
 Route::get('/add-package', 'PackageController@addPackage')->name('add-package');
@@ -21,7 +14,7 @@ Route::get('/package_success', function () {
     if(Session::has('flash_order_message')) {
         return view('package_success');
     } else {
-        return redirect('/');
+        return redirect('/package');
     }
 });
 
@@ -58,6 +51,13 @@ Route::get('/support', function () {
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/withdraw', 'WithdrawController@index')->name('withdraw');
+Route::post('/withdraw', 'WithdrawController@review')->name('withdraw-review');
+
+Route::get('/withdraw-confirm', function () {
+    return view('withdraw_confirm');
+});
+
+Route::post('/withdraw-confirm', 'WithdrawController@confirm')->name('withdraw-confirm');
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->middleware('auth');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->middleware('auth');

@@ -94,6 +94,10 @@ class WithdrawController extends Controller
                         $withdraw->name_bank = $name_bank;
                         $withdraw->account_bank = $account_bank;
                         $withdraw->save();
+                        session()->flash('flash_point', $point);
+                        session()->flash('flash_user_bank', $user_bank);
+                        session()->flash('flash_name_bank', $name_bank);
+                        session()->flash('flash_account_bank', $account_bank);
                         return redirect('/withdraw-success')->with('flash_withdraw_message', "Khớp lệnh thành công!");
                     } else {
                         return redirect('/withdraw-review?_token='.$request->get('_token').'&point='.$point.'&user_bank='.$user_bank.'&name_bank='.$name_bank.'&account_bank='.$account_bank)->with('flash_withdraw_message_warning', 'Đã xảy ra lỗi!');

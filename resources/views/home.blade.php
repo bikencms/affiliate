@@ -11,15 +11,15 @@
     <!-- Page Title -->
     <title>Robot-rfx.com | Hệ thống robot giao dịch ngoại hối</title>
     <!-- Favicon Icon -->
-    <link rel="shortcut icon" href="{{ asset('assets/image/logo.png') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon" />
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-    <link id="theme" rel="stylesheet" href="{{ asset('assets/css/color/color-1.css') }}">
+    <link rel="stylesheet" type="text/css" href="assets/css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link id="theme" rel="stylesheet" href="assets/css/color/color-1.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="{{ asset('assets/vendor/backward/html5shiv.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/backward/respond.min.js') }}"></script>
+    <script type="text/javascript" src="assets/vendor/backward/html5shiv.js"></script>
+    <script type="text/javascript" src="assets/vendor/backward/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -32,7 +32,7 @@
             <div class="site-branding">
                 <!-- For Image Logo -->
                 <a href="/" class="custom-logo-link">
-                    <img src="{{ asset('assets/image/logo.png') }}" alt="" class="custom-logo">
+                    <img src="assets/image/logo.png" alt="" class="custom-logo">
                 </a>
                 <!-- For Site Title -->
                 <!-- <span class="site-title">
@@ -61,7 +61,7 @@
             <div class="swiper-slide">
                 <div class="slide-inner" data-swiper-parallax="45%">
                     <div class="gradient-overlay"></div>
-                    <div class="swiper-bg-img"><img src="{{ asset('assets/img/hero-bg-02.jpg') }}" alt=""></div>
+                    <div class="swiper-bg-img"><img src="assets/img/hero-bg-02.jpg" alt=""></div>
                     <div class="container">
                         <div class="slider-text">
                             <h1>ĐỪNG MONG ĐÍCH ĐẾN SẼ THAY ĐỔI NẾU</h1>

@@ -50,6 +50,12 @@ if (isset(\Auth::user()->id)) {
             align-items: inherit;
             width: 100%;
         }
+        #DataTables_Table_1_wrapper, #DataTables_Table_1_wrapper .row {
+            display: inherit;
+            flex-flow: inherit;
+            align-items: inherit;
+            width: 100%;
+        }
     </style>
     @stack('styles')
 </head>
@@ -84,7 +90,7 @@ if (isset(\Auth::user()->id)) {
                         @csrf
                     </form>
                 </div>
-                @endguest
+            @endguest
         </nav>
     </header>
 
@@ -169,6 +175,11 @@ if (isset(\Auth::user()->id)) {
                     <li>
                         <a href="{{ route('order') }}">
                             <i class="fa fa-money"></i> <span>Order</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('manager-withdraw') }}">
+                            <i class="fa fa-tachometer"></i> <span>Quản lý rút tiền</span>
                         </a>
                     </li>
                     <li>

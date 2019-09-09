@@ -51,14 +51,17 @@ Route::get('/support', function () {
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/withdraw', 'WithdrawController@index')->name('withdraw');
-Route::post('/withdraw', 'WithdrawController@review')->name('withdraw-review');
+Route::get('/withdraw-review', 'WithdrawController@review')->name('withdraw-review');
+Route::get('/withdraw-confirm', 'WithdrawController@confirm')->name('withdraw-confirm');
 
-Route::get('/withdraw-confirm', function () {
-    return view('withdraw_confirm');
+Route::get('/withdraw-success', function () {
+    if(Session::has('flash_withdraw_message')) {
+        return view('withdraw_success');
+    } else {
+        return redirect('/withdraw');
+    }
 });
 
-Route::post('/withdraw-confirm', 'WithdrawController@confirm')->name('withdraw-confirm');
-
-Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->middleware('auth');
-Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->middleware('auth');
-Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->middleware('auth');
+Route::get('/manager-withdraw', 'WithdrawController@manageWithdraw')->name('manager-withdraw');
+Route::post('/manager-withdraw/active', 'WithdrawController@active')->name('manager-withdraw-active');
+Route::post('/manager-withdraw/delete/{id}', 'WithdrawController@delete');

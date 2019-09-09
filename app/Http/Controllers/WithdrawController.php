@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\History;
 use App\Http\Controllers\AdminController as Controller;
 use App\Models\Order;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 class WithdrawController extends Controller
@@ -37,14 +38,18 @@ class WithdrawController extends Controller
      */
     public function index()
     {
+        $user = \Auth::user();
+        if($user->point < 50) {
+            return redirect('/profile');
+        }
+        $withdraws = Withdraw::where('user_id', $user->id)->get();
         $packageQuantity = Order::where('id_user', \Auth::user()->id)->whereIn('status', [1,2])->count();
         $packageSumBonus = History::where('user_id', \Auth::user()->id)->where('type', 1)->sum('price');
         $affiliateSum = History::where('user_id', \Auth::user()->id)->where('type', 0)->sum('price');
-        return view('withdraw', compact('packageQuantity', 'affiliateSum', 'packageSumBonus'));
+        return view('withdraw', compact('packageQuantity', 'affiliateSum', 'packageSumBonus', 'withdraws'));
     }
 
     public function review(Request $request) {
-        $this->validator($request->all())->validate();
         $point = $request->get('point', 0);
         $user = \Auth::user();
         if($point > $user->point) {
@@ -53,14 +58,15 @@ class WithdrawController extends Controller
         $user_bank = $request->get('user_bank', '');
         $name_bank = $request->get('name_bank', '');
         $account_bank = $request->get('account_bank', '');
+        $warning = $request->session()->get('flash_withdraw_message_warning');
+        if($warning) {
+            return view('withdraw_confirm', compact( 'point', 'user_bank', 'name_bank', 'account_bank', 'warning'));
+        }
+        $this->validator($request->all())->validate();
         if ( is_numeric($point) && $point >= 50 && $user_bank != '' && $name_bank != '' && is_numeric($account_bank) ) {
-            session()->flash('flash_point', $point);
-            session()->flash('flash_user_bank', $user_bank);
-            session()->flash('flash_name_bank', $name_bank);
-            session()->flash('flash_account_bank', $account_bank);
-            return redirect('/withdraw-confirm');
+            return view('withdraw_confirm', compact( 'point', 'user_bank', 'name_bank', 'account_bank'));
         } else {
-            return redirect('/withdraw')->with('warning', 'Something went wrong');
+            return redirect('/withdraw-review')->with('warning', 'Đã xảy ra lỗi!');
         }
     }
 
@@ -69,21 +75,68 @@ class WithdrawController extends Controller
         $user_bank = $request->get('user_bank', '');
         $name_bank = $request->get('name_bank', '');
         $account_bank = $request->get('account_bank', '');
+        $user = \Auth::user();
+        if($point > $user->point) {
+            return redirect('/withdraw-review?_token='.$request->get('_token').'&point='.$point.'&user_bank='.$user_bank.'&name_bank='.$name_bank.'&account_bank='.$account_bank)->with('flash_withdraw_message_warning', 'Bạn không đủ tiền để thực hiện chức năng này!');
+        }
         if ( is_numeric($point) && $point >= 50 && $user_bank != '' && $name_bank != '' && is_numeric($account_bank) ) {
-            $user = \Auth::user();
             $hasher = app('hash');
             $password = $request->get('password', '');
             if ($password != '') {
                 if ($hasher->check($password, $user->password)) {
-                    session()->flash('flash_withdraw_message', 1);
-                    return redirect('/withdraw-confirm')->with('success', "Khớp lệnh thành công!");
+                    $user->point = $user->point - $point;
+                    if($user->save()) {
+                        $withdraw = new Withdraw();
+                        $withdraw->user_id = $user->id;
+                        $withdraw->point = $point;
+                        $withdraw->reason = 'Rút tiền hoa hồng!';
+                        $withdraw->user_bank = $user_bank;
+                        $withdraw->name_bank = $name_bank;
+                        $withdraw->account_bank = $account_bank;
+                        $withdraw->save();
+                        return redirect('/withdraw-success')->with('flash_withdraw_message', "Khớp lệnh thành công!");
+                    } else {
+                        return redirect('/withdraw-review?_token='.$request->get('_token').'&point='.$point.'&user_bank='.$user_bank.'&name_bank='.$name_bank.'&account_bank='.$account_bank)->with('flash_withdraw_message_warning', 'Đã xảy ra lỗi!');
+                    }
                 } else {
-                    return redirect('/withdraw-confirm')->with('warning', "Mật khẩu không đúng!");
+                    return redirect('/withdraw-review?_token='.$request->get('_token').'&point='.$point.'&user_bank='.$user_bank.'&name_bank='.$name_bank.'&account_bank='.$account_bank)->with('flash_withdraw_message_warning', 'Mật khẩu không chính xác!');
                 }
+            } else {
+                return redirect('/withdraw-review?_token='.$request->get('_token').'&point='.$point.'&user_bank='.$user_bank.'&name_bank='.$name_bank.'&account_bank='.$account_bank)->with('flash_withdraw_message_warning', 'Mật khẩu không được rỗng!');
             }
         } else {
-            return redirect('/withdraw')->with('warning', 'Something went wrong');
+            return redirect('/withdraw-success')->with('warning', 'Đã xảy ra lỗi!');
         }
     }
 
+    public function manageWithdraw() {
+        if(!$this->isAdmin()) {
+            abort(404);
+        }
+        $withdraws = Withdraw::all();
+        return view('manager_withdraw', compact('withdraws'));
+    }
+
+    public function active(Request $request) {
+        if(!$this->isAdmin()) {
+            abort(404);
+        }
+        $withdraw = Withdraw::find($request->get('withdraw_id', 0));
+        $withdraw->status = 1;
+        if($withdraw->save()) {
+            return redirect('manager-withdraw')->with('success', 'Lệnh rút tiền ' . $request->get('withdraw_id', 0) . ' chuyển khoản thành công!');
+        } else {
+            return redirect('manager-withdraw')->with('warning', 'Đã xảy ra lỗi!');
+        }
+    }
+
+    public function delete($id)
+    {
+        if(!$this->isAdmin()) {
+            abort(404);
+        }
+        $withdraw = Withdraw::find($id);
+        $withdraw->delete();
+        return redirect('manager-withdraw')->with('success', 'Lệnh rút tiền ' . $id . ' được xóa thành công!');
+    }
 }

@@ -66,10 +66,22 @@
                         <div class="slider-text">
                             <h1>ĐỪNG MONG ĐÍCH ĐẾN SẼ THAY ĐỔI NẾU</h1>
                             <h2> bạn không thay đổi con đường </h2>
+                            @guest
                             <div class="but-group">
                                 <a href="/login" class="tm-btn"><span> Đăng Nhập</span></a>
                                 <a href="/register" class="tm-btn tm-btn-black"><span>Đăng ký</span></a>
                             </div>
+                            @else
+                            <div class="but-group">
+                                <a href="/profile" class="tm-btn"><span>Hồ sơ</span></a>
+                                <a href="{{ route('logout') }}" class="tm-btn" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();"><span>{{ __('Đăng xuất') }}</span></a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                            @endguest
                         </div>
                     </div>
                 </div>

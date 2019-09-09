@@ -157,10 +157,12 @@
                                 </li>
                             </ul>
                         </div>
+                        @if(Auth::user()->point >= 50 )
                         <div class="box box-widget">
                             <a class="btn btn-success" style="width: 100%; font-weight: bold; display: inline-block"
                                href="{{ route('withdraw') }}">RÚT TIỀN</a>
                         </div>
+                        @endif
                     </div>
                     <div class="modal modal-warning fade" id="modal-warning">
                         <div class="modal-dialog">
@@ -258,6 +260,52 @@
                                         <td class="font-w600">{{ $history->created_at->format('d/m/Y') }}</td>
                                         <td class="font-w600">{{ $history->price == 0 ? '#' : '+'.$history->price }}</td>
                                         <td class="font-w600">{{ $history->reason }} {{ $history->user_ref_id == 0 ? '' : 'từ ' . $history->userRef->email }} </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Lịch sử Rút Tiền</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-striped table-vcenter table-bordered data-table">
+                                <thead>
+                                <tr>
+                                    <th>Ngày Tháng Năm</th>
+                                    <th>Số Tiền</th>
+                                    <th>Lý do</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($withdraws as $withdraw)
+                                    <tr>
+                                        <td>{{ date_format($withdraw->created_at,"d-m-Y") }}</td>
+                                        <td>{{ $withdraw->point }}$</td>
+                                        <td>
+                                            <address>
+                                                <strong>Thông tin tài khoản: <br></strong><br>
+                                                Tên tài khoản: {{ $withdraw->user_bank }} <br>
+                                                Số tài khoản: {{ $withdraw->account_bank }}<br>
+                                                Chi Nhánh: {{ $withdraw->name_bank }}<br>
+                                                Số tiền: {{ $withdraw->point }}$<br>
+                                                Nội Dung: {{ $withdraw->reason }}
+                                            </address>
+                                        </td>
+                                        <td>
+                                            {{ $withdraw->status == 0 ? 'Đang chờ...' : 'Rút thành công' }}
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

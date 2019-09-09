@@ -200,7 +200,7 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <form action="{{ route('withdraw-review') }}" method="post" autocomplete="off">
+                                    <form action="{{ route('withdraw-review') }}" method="get" autocomplete="off">
                                         @csrf
                                         @if (\Session::has('success'))
                                             <div class="alert alert-success">
@@ -233,7 +233,7 @@
                                                     <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
                                                         error</label>
                                                     @enderror
-                                                    <input type="number" class="form-control" placeholder="Nhập số tiền lớn hơn 50$" name="point" autocomplete="point">
+                                                    <input type="number" class="form-control" placeholder="Nhập số tiền lớn hơn 50$" name="point" autocomplete="point" required>
                                                     @error('point')
                                                     <span class="help-block">{{ $message }}</span>
                                                     @enderror
@@ -265,7 +265,7 @@
                                                         error</label>
                                                     @enderror
                                                     <input type="text" class="form-control"
-                                                           placeholder="Ví du: Nguyễn Văn Phú" autocomplete="user_bank" name="user_bank">
+                                                           placeholder="Ví du: Nguyễn Văn Phú" autocomplete="user_bank" name="user_bank" required>
                                                     @error('user_bank')
                                                     <span class="help-block">{{ $message }}</span>
                                                     @enderror
@@ -277,7 +277,7 @@
                                                         error</label>
                                                     @enderror
                                                     <input type="text" class="form-control"
-                                                           placeholder="Ví du: Vietcombank, chi nhánh Hà Nội" autocomplete="name_bank" name="name_bank">
+                                                           placeholder="Ví du: Vietcombank, chi nhánh Hà Nội" autocomplete="name_bank" name="name_bank" required>
                                                     @error('name_bank')
                                                     <span class="help-block">{{ $message }}</span>
                                                     @enderror
@@ -289,7 +289,7 @@
                                                         error</label>
                                                     @enderror
                                                     <input type="number" class="form-control"
-                                                           placeholder="Ví du: 00710007716482 " autocomplete="account_bank" name="account_bank">
+                                                           placeholder="Ví du: 00710007716482 " autocomplete="account_bank" name="account_bank" required>
                                                     @error('account_bank')
                                                     <span class="help-block">{{ $message }}</span>
                                                     @enderror
@@ -320,19 +320,32 @@
                             <table class="table table-striped table-vcenter table-bordered data-table">
                                 <thead>
                                 <tr>
-                                    <th>Ngày Tháng</th>
+                                    <th>Ngày Tháng Năm</th>
                                     <th>Số Tiền</th>
+                                    <th>Lý do</th>
                                     <th>Trạng thái</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($withdraws as $withdraw)
                                 <tr>
-                                    <td class="font-w600">08/2019</td>
-                                    <td class="font-w600">300$</td>
-                                    <td class="font-w600">
-                                        Đang chờ...
+                                    <td>{{ date_format($withdraw->created_at,"d-m-Y") }}</td>
+                                    <td>{{ $withdraw->point }}$</td>
+                                    <td>
+                                        <address>
+                                            <strong>Thông tin tài khoản: <br></strong><br>
+                                            Tên tài khoản: {{ $withdraw->user_bank }} <br>
+                                            Số tài khoản: {{ $withdraw->account_bank }}<br>
+                                            Chi Nhánh: {{ $withdraw->name_bank }}<br>
+                                            Số tiền: {{ $withdraw->point }}$<br>
+                                            Nội Dung: {{ $withdraw->reason }}
+                                        </address>
+                                    </td>
+                                    <td>
+                                        {{ $withdraw->status == 0 ? 'Đang chờ...' : 'Rút thành công' }}
                                     </td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

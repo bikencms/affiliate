@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\History;
 use App\Http\Controllers\AdminController as Controller;
 use App\Models\Order;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 class ProfileController extends Controller
@@ -48,7 +49,8 @@ class ProfileController extends Controller
         $packageQuantity = Order::where('id_user', \Auth::user()->id)->whereIn('status', [1,2])->count();
         $packageSumBonus = History::where('user_id', \Auth::user()->id)->where('type', 1)->sum('price');
         $affiliateSum = History::where('user_id', \Auth::user()->id)->where('type', 0)->sum('price');
-        return view('profile', compact('histories', 'packageQuantity', 'affiliateSum', 'packageSumBonus'));
+        $withdraws = Withdraw::where('user_id', \Auth::user()->id)->get();
+        return view('profile', compact('histories', 'packageQuantity', 'affiliateSum', 'packageSumBonus', 'withdraws'));
     }
 
     public function showTree() {

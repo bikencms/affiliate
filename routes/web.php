@@ -4,6 +4,7 @@ use App\Models\History;
 use App\Models\Order;
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -30,16 +31,16 @@ Route::post('/order/delete/{id}', 'OrderController@delete');
 
 Route::get('/user', 'UserController@index')->name('user-manager');
 Route::get('/user/show-tree/{id}', 'UserController@showTree')->name('show-tree');
+Route::post('/user/delete/{id}', 'UserController@delete')->name('user-delete');
 
 Route::get('/affiliate/{order_id}', 'AffiliateController@index')->name('affiliate');
 Route::post('/affiliate-bonus', 'AffiliateController@bonus')->name('affiliate-bonus');
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::get('/profile/show-tree', 'ProfileController@showTree')->name('profile-show-tree');
-Route::get('/setting', 'ProfileController@setting')->name('setting');
-Route::post('/setting', 'ProfileController@saveSetting')->name('setting');
+Route::get('/profile', 'ProfileController@index')->name('profile')->middleware('verified');
+Route::get('/profile/show-tree', 'ProfileController@showTree')->name('profile-show-tree')->middleware('verified');
+Route::get('/setting', 'ProfileController@setting')->name('setting')->middleware('verified');
+Route::post('/setting', 'ProfileController@saveSetting')->name('setting')->middleware('verified');
 
-Route::post('/user/delete/{id}', 'UserController@delete')->name('user-delete');
 
 Route::get('/faq', function () {
     return view('faq');

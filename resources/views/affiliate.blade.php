@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info pull-left btn-confirm" data-toggle="tooltip"
+                                <button type="submit" class="btn btn-info pull-left" data-toggle="modal" href="#confirm"
                                         title="Save">Save
                                 </button>
                             </div>

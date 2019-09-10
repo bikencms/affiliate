@@ -72,9 +72,9 @@
                             <td class="font-w600 text-success">{{ $user->point }}</td>
                             <td>
                                 <a href="{{route('show-tree', ['id' => $user->id])}}" class="btn bg-olive">Show tree</a>
-                                <form onsubmit="return confirm('Do you continue?');" action="{{ route('user-delete', ['id' => $user->id ]) }}" method="POST" style="display: inline-block">
+                                <form action="{{ route('user-delete', ['id' => $user->id ]) }}" method="POST" style="display: inline-block" class="deleteForm{{$user->id}}">
                                     @csrf
-                                    <button class="btn bg-maroon" type="submit" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i> Delete</button>
+                                    <button class="btn bg-maroon btn-confirm" type="submit" form-value="deleteForm{{$user->id}}" title="Delete"><i class="fa fa-trash"></i> Delete</button>
                                 </form>
                             </td>
                         </tr>

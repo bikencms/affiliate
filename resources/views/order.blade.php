@@ -81,21 +81,20 @@
                             </td>
                             <td>
                                 @if( $order->status == 0 )
-                                    <form action="{{ url('order/active') }}" method="POST" onsubmit="return confirm('Do you continue?');">
+                                    <form action="{{ url('order/active') }}" method="POST" class="activeForm{{$order->id}}">
                                         @csrf
                                         <input type="hidden" name="id_order" value="{{$order->id}}">
-                                        <button type="submit" class="btn btn-block btn-success">Active</button>
+                                        <button type="submit" class="btn btn-block btn-success btn-confirm-active" form-value="activeForm{{$order->id}}">Active</button>
                                     </form>
                                 @elseif( $order->status == 1 )
                                     <a href="{{ route('affiliate', [ 'id' => $order->id ]) }}" class="btn btn-block bg-olive" data-toggle="tooltip" title="Affiliate bonus">
                                         Affiliate bonus
                                     </a>
                                 @endif
-                                    <form onsubmit="return confirm('Do you continue?');"
-                                          action="{{ url('order/delete/' . $order->id) }}" method="POST">
+                                    <form action="{{ url('order/delete/' . $order->id) }}" method="POST" class="deleteForm{{$order->id}}">
                                         @csrf
                                         @method('POST')
-                                        <button class="btn btn-block btn-secondary" type="submit">Delete</button>
+                                        <button class="btn btn-block btn-secondary btn-confirm" form-value="deleteForm{{$order->id}}" type="submit">Delete</button>
                                     </form>
                             </td>
                         </tr>

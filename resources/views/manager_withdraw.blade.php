@@ -84,17 +84,17 @@
                             </td>
                             <td>
                                 @if( $withdraw->status == 0 )
-                                    <form action="{{ url('manager-withdraw/active') }}" method="POST" onsubmit="return confirm('Do you continue?');">
+                                    <form action="{{ url('manager-withdraw/active') }}" method="POST" class="activeForm{{$withdraw->id}}">
                                         @csrf
                                         <input type="hidden" name="withdraw_id" value="{{$withdraw->id}}">
-                                        <button type="submit" class="btn btn-block btn-success">Active</button>
+                                        <button type="submit" class="btn btn-block btn-success btn-confirm" form-value="activeForm{{$withdraw->id}}">Active</button>
                                     </form>
                                 @endif
-                                <form onsubmit="return confirm('Do you continue?');"
-                                      action="{{ url('manager-withdraw/delete/' . $withdraw->id) }}" method="POST">
+                                <form
+                                      action="{{ url('manager-withdraw/delete/' . $withdraw->id) }}" method="POST" class="deleteForm{{$withdraw->id}}">
                                     @csrf
                                     @method('POST')
-                                    <button class="btn btn-block btn-secondary" type="submit">Delete</button>
+                                    <button class="btn btn-block btn-secondary btn-confirm" form-value="deleteForm{{$withdraw->id}}" type="submit">Delete</button>
                                 </form>
                             </td>
                         </tr>

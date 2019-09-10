@@ -99,7 +99,7 @@
                                     @enderror
                                 </div>
                                 <div class="input-group">
-                                    <button type="submit" class="btn btn-info pull-left btn-confirm" data-toggle="tooltip" title="Save">Save</button>
+                                    <button type="submit" class="btn btn-info pull-left btn-confirm" title="Save">Save</button>
                                 </div>
                             </form>
                         </div>

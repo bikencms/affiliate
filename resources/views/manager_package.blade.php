@@ -11,18 +11,18 @@
         </h1>
     </section>
     <section class="content">
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <p>{{ \Session::get('success') }}</p>
+            </div><br/>
+        @endif
+        @if (\Session::has('warning'))
+            <div class="alert alert-warning">
+                <p>{{ \Session::get('warning') }}</p>
+            </div><br/>
+        @endif
         <div class="row">
-            @if (\Session::has('success'))
-                <div class="alert alert-success">
-                    <p>{{ \Session::get('success') }}</p>
-                </div><br/>
-            @endif
-            @if (\Session::has('warning'))
-                <div class="alert alert-warning">
-                    <p>{{ \Session::get('warning') }}</p>
-                </div><br/>
-            @endif
-            <form method="post" action="{{ route('package-create') }}">
+            <form method="post" action="{{ route('package-create') }}" class="formSave">
                 @csrf
                 <div class="col-md-12">
                     <!-- Horizontal Form -->
@@ -63,7 +63,7 @@
                                 <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea>
                             </div>
                             <div class="input-group">
-                                <button type="submit" class="btn btn-info pull-left btn-confirm" data-toggle="tooltip" title="Save">Save</button>
+                                <button type="submit" class="btn btn-info pull-left btn-confirm-save" title="Save">Save</button>
                             </div>
                             <!-- /input-group -->
                         </div>
@@ -91,9 +91,9 @@
                                 <a href="{{ route('package-edit', [ 'id' => $package->id ]) }}" class="btn bg-olive" data-toggle="tooltip" title="Edit">
                                     <i class="fa fa-pencil"></i> Edit
                                 </a>
-                                <form onsubmit="return confirm('Do you continue?');" action="{{ route('package-delete', ['id' => $package->id ]) }}" method="POST" style="display: inline-block">
+                                <form action="{{ route('package-delete', ['id' => $package->id ]) }}" method="POST" style="display: inline-block" class="deleteForm{{$package->id}}">
                                     @csrf
-                                    <button class="btn bg-maroon" type="submit" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i> Delete</button>
+                                    <button class="btn bg-maroon btn-confirm" form-value="deleteForm{{$package->id}}" type="submit" title="Delete"><i class="fa fa-trash"></i> Delete</button>
                                 </form>
                             </td>
                         </tr>

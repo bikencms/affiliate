@@ -64,7 +64,7 @@
                                 <textarea class="form-control" rows="3" placeholder="Description" name="description">{{ $package->description }}</textarea>
                             </div>
                             <div class="input-group">
-                                <button type="submit" class="btn btn-info pull-right" data-toggle="tooltip" title="Save">Save</button>
+                                <button type="submit" class="btn btn-info pull-right btn-confirm" title="Save">Save</button>
                             </div>
                             <!-- /input-group -->
                         </div>

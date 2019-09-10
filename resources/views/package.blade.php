@@ -44,7 +44,7 @@
                             <i class="fa @if(isset($packageFee[$key])) {{ $robotFee[$key]['icon'] }} @else fa-rocket @endif "></i>
                         </div>
                         <a href="{{ route('add-package', [ 'id_package' => $packageF->id ]) }}"
-                           class="small-box-footer">
+                           class="small-box-footer btn-go-to">
                             ĐĂNG KÝ NGAY
                         </a>
                     </div>

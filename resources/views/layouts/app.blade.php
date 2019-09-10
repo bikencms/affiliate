@@ -86,10 +86,10 @@ if (isset(\Auth::user()->id)) {
         }
         .modal-confirm .modal-footer {
             border: none;
+            display: inline-block;
             text-align: center;
             border-radius: 5px;
             font-size: 13px;
-            padding: 10px 15px 25px;
         }
         .modal-confirm .modal-footer a {
             color: #999;
@@ -361,6 +361,26 @@ if (isset(\Auth::user()->id)) {
         </div>
     </div>
 </div>
+<div id="goTo" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <i class="fa fa-calendar-check-o"></i>
+                </div>
+                <h4 class="modal-title">Xác nhận thông tin</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có muốn tiếp tục?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-success btn-continue-go-to">Tiếp tục</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="{{ asset('vendor/adminlte/bower_components/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/bower_components/fastclick/lib/fastclick.js') }}"></script>
@@ -375,6 +395,7 @@ if (isset(\Auth::user()->id)) {
     $(document).ready(function () {
         var deleteForm = '';
         var activeForm = '';
+        var goTo = '';
         $(".alert-success").delay(2000).slideUp(200, function () {
             $(this).alert('close');
         });
@@ -383,6 +404,15 @@ if (isset(\Auth::user()->id)) {
         });
         $(".alert-info").delay(2000).slideUp(200, function () {
             $(this).alert('close');
+        });
+        $(".btn-go-to").click(function() {
+            goTo = $(this).attr('href');
+            $("#goTo").modal("show");
+            return false;
+        });
+        $(".btn-continue-go-to").click(function() {
+            window.location.href = goTo;
+            return true;
         });
         $(".btn-confirm-save").click(function() {
             $("#confirmSave").modal("show");

@@ -239,7 +239,7 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Lịch sử Hệ Thống</h3>
@@ -272,7 +272,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Lịch sử Rút Tiền</h3>

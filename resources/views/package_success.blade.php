@@ -26,7 +26,7 @@
         ?>
         <!-- title row -->
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <h2 class="page-header">
                         <i class="fa fa-globe"></i> Hoàn tất đơn hàng Inc.
                         <small class="pull-right">Vừa xong</small>
@@ -67,7 +67,7 @@
 
             <!-- Table row -->
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -95,7 +95,7 @@
 
             <div class="row">
                 <!-- accepted payments column -->
-                <div class="col-xs-6">
+                <div class="col-sm-6">
                     <p class="lead">CHÚ Ý THANH TOÁN:</p>
                     <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                         NHẬN ĐƯỢC THANH TOÁN Chúng tôi sẽ kích hoạt gói cước của bạn sau 5 - 10 phút. Đội kỹ thuật sẽ
@@ -105,7 +105,7 @@
 
                 </div>
                 <!-- /.col -->
-                <div class="col-xs-6">
+                <div class="col-sm-6">
                     <p class="lead">TỔNG ĐƠN HÀNG</p>
                     <div class="margin">
                         <table class="table">
@@ -134,7 +134,7 @@
 
             <!-- this row will not appear when printing -->
             <div class="row no-print">
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> In</a>
                     <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Cảm ơn !
                     </button>

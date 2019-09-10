@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\History;
-use App\Models\Order;
 
 Auth::routes();
 Auth::routes(['verify' => true]);

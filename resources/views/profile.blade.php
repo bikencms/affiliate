@@ -320,10 +320,30 @@
         </div>
     </section>
 @endsection
+<div id="verify" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <i class="fa fa-calendar-check-o"></i>
+                </div>
+                <h4 class="modal-title">Xác thực thành công</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function () {
         $('.data-table').DataTable({"responsive": true});
+        @if (\Session::has('flash_verified'))
+        $("#verify").modal("show");
+        <?php Session::forget('flash_verified'); ?>
+        @endif
     });
 </script>
 @endpush

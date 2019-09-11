@@ -90,23 +90,31 @@ class ProfileController extends Controller
         $passwordCheck = $request->get('password', '');
         if( $passwordCheck != '' ) {
             if ($hasher->check($passwordCheck, $user->password)) {
-                $phone = $request->get('phone', 0);
-                $bank_account = $request->get('bank_account', 0);
                 $name = $request->get('name', '');
+                $phone = $request->get('phone', 0);
+                $account_bank = $request->get('account_bank', '');
+                $user_bank = $request->get('user_bank', '');
+                $name_bank = $request->get('name_bank', '');
                 if( $phone > 0 ) {
                     $user->phone = $phone;
                 }
-                if( $bank_account > 0 ) {
-                    $user->bank_account = $bank_account;
+                if( $account_bank != '' ) {
+                    $user->account_bank = $account_bank;
+                }
+                if( $user_bank != '' ) {
+                    $user->user_bank = $user_bank;
+                }
+                if( $name_bank != '' ) {
+                    $user->name_bank = $name_bank;
                 }
                 if( $name != '' ) {
                     $user->name = $name;
                 }
                 if($user->save()) {
-                    return redirect('/setting')->with('success', 'Profile is updated successfully!');
+                    return redirect('/setting')->with('success', 'Thông tin đã được cập nhật!');
                 }
             } else {
-                return redirect('/setting')->with('warning', 'Password is wrong!');
+                return redirect('/setting')->with('warning', 'Mật khẩu không chính xác!');
             }
         }
 

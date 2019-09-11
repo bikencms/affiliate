@@ -265,7 +265,7 @@
                                                         error</label>
                                                     @enderror
                                                     <input type="text" class="form-control"
-                                                           placeholder="Ví du: Nguyễn Văn Phú" autocomplete="user_bank" name="user_bank" required>
+                                                           placeholder="Ví du: Nguyễn Văn Phú" autocomplete="user_bank" name="user_bank" required value="{{ Auth::user()->user_bank }}">
                                                     @error('user_bank')
                                                     <span class="help-block">{{ $message }}</span>
                                                     @enderror
@@ -277,7 +277,7 @@
                                                         error</label>
                                                     @enderror
                                                     <input type="text" class="form-control"
-                                                           placeholder="Ví du: Vietcombank, chi nhánh Hà Nội" autocomplete="name_bank" name="name_bank" required>
+                                                           placeholder="Ví du: Vietcombank, chi nhánh Hà Nội" autocomplete="name_bank" name="name_bank" required value="{{ Auth::user()->name_bank }}">
                                                     @error('name_bank')
                                                     <span class="help-block">{{ $message }}</span>
                                                     @enderror
@@ -289,7 +289,7 @@
                                                         error</label>
                                                     @enderror
                                                     <input type="number" class="form-control"
-                                                           placeholder="Ví du: 00710007716482 " autocomplete="account_bank" name="account_bank" required>
+                                                           placeholder="Ví du: 00710007716482 " autocomplete="account_bank" name="account_bank" required value="{{ Auth::user()->account_bank }}">
                                                     @error('account_bank')
                                                     <span class="help-block">{{ $message }}</span>
                                                     @enderror

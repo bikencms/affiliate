@@ -49,7 +49,7 @@
                                     @enderror
                                     <div class="input-group">
                                         <span class="input-group-addon" style="width: 40px"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" placeholder="{{ __('Full name') }}" name="name" required autocomplete="name" value="{{ Auth::user()->name }}">
+                                        <input type="text" class="form-control" placeholder="{{ __('Tên đầy đủ') }}" name="name" required autocomplete="name" value="{{ Auth::user()->name }}">
                                     </div>
                                     @error('name')
                                     <span class="help-block">{{ $message }}</span>
@@ -63,23 +63,51 @@
                                     @enderror
                                     <div class="input-group">
                                         <span class="input-group-addon" style="width: 40px"><i class="fa fa-mobile-phone"></i></span>
-                                        <input type="number" class="form-control" placeholder="{{ __('Phone') }}" name="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}">
+                                        <input type="number" class="form-control" placeholder="{{ __('Số điện thoại') }}" name="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}">
                                     </div>
                                     @error('phone')
                                     <span class="help-block">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group has-feedback @error('bank_account') has-error @enderror">
-                                    @error('bank_account')
+                                <div class="form-group has-feedback @error('user_bank') has-error @enderror">
+                                    @error('user_bank')
                                     <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
                                         with
                                         error</label>
                                     @enderror
                                     <div class="input-group">
                                         <span class="input-group-addon" style="width: 40px"><i class="fa fa-bank"></i></span>
-                                        <input type="number" class="form-control" placeholder="{{ __('Bank Account') }}" name="bank_account" required autocomplete="bank_account" value="{{ Auth::user()->bank_account }}">
+                                        <input type="text" class="form-control" placeholder="{{ __('Tên chủ thẻ') }}" name="user_bank" required autocomplete="account_bank" value="{{ Auth::user()->user_bank }}">
                                     </div>
-                                    @error('bank_account')
+                                    @error('user_bank')
+                                    <span class="help-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group has-feedback @error('name_bank') has-error @enderror">
+                                    @error('name_bank')
+                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
+                                        with
+                                        error</label>
+                                    @enderror
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width: 40px"><i class="fa fa-bank"></i></span>
+                                        <input type="text" class="form-control" placeholder="{{ __('Tên ngân hàng, chi nhánh') }}" name="name_bank" required autocomplete="account_bank" value="{{ Auth::user()->name_bank }}">
+                                    </div>
+                                    @error('name_bank')
+                                    <span class="help-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group has-feedback @error('account_bank') has-error @enderror">
+                                    @error('account_bank')
+                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input
+                                        with
+                                        error</label>
+                                    @enderror
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="width: 40px"><i class="fa fa-bank"></i></span>
+                                        <input type="number" class="form-control" placeholder="{{ __('Số tài khoản') }}" name="account_bank" required autocomplete="account_bank" value="{{ Auth::user()->account_bank }}">
+                                    </div>
+                                    @error('account_bank')
                                     <span class="help-block">{{ $message }}</span>
                                     @enderror
                                 </div>

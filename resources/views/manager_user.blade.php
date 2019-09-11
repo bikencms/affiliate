@@ -59,6 +59,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Account Bank</th>
                         <th>Point</th>
                         <th>Action</th>
                     </tr>
@@ -69,6 +70,15 @@
                             <td class="font-w600">{{ $user->id }}</td>
                             <td class="font-w600">{{ $user->name }} </td>
                             <td class="font-w600">{{ $user->email }}</td>
+                            <td class="font-w600 text-info">
+                                <address>
+                                    <strong>Thông tin tài khoản: <br></strong><br>
+                                    Tên tài khoản: {{ $user->user_bank }} <br>
+                                    Số tài khoản: {{ $user->account_bank }}<br>
+                                    Chi Nhánh: {{ $user->name_bank }}<br>
+                                </address>
+
+                            </td>
                             <td class="font-w600 text-success">{{ $user->point }}</td>
                             <td>
                                 <a href="{{route('show-tree', ['id' => $user->id])}}" class="btn bg-olive">Show tree</a>

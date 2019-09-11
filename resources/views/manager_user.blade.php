@@ -72,7 +72,7 @@
                             <td class="font-w600">{{ $user->email }}</td>
                             <td class="font-w600 text-info">
                                 <address>
-                                    <strong>Thông tin tài khoản: <br></strong><br>
+                                    <strong>Thông tin tài khoản: <br></strong>
                                     Tên tài khoản: {{ $user->user_bank }} <br>
                                     Số tài khoản: {{ $user->account_bank }}<br>
                                     Chi Nhánh: {{ $user->name_bank }}<br>

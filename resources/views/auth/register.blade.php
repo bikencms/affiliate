@@ -38,7 +38,7 @@
     </div>
 
     <div class="register-box-body">
-        <p class="login-box-msg">Register a new membership</p>
+        <p class="login-box-msg">Đăng ký thành viên mới</p>
         @error('email_referral')
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -116,7 +116,7 @@
             </div>
         </form>
         <br>
-        <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ route('login') }}" class="text-center">Tôi đã là thành viên</a>
     </div>
     <!-- /.form-box -->
 </div>

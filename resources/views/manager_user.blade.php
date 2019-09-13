@@ -59,6 +59,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Account Bank</th>
                         <th>Point</th>
                         <th>Action</th>
@@ -70,6 +71,7 @@
                             <td class="font-w600">{{ $user->id }}</td>
                             <td class="font-w600">{{ $user->name }} </td>
                             <td class="font-w600">{{ $user->email }}</td>
+                            <td class="font-w600">{{ $user->phone }}</td>
                             <td class="font-w600 text-info">
                                 <address>
                                     <strong>Thông tin tài khoản: <br></strong>

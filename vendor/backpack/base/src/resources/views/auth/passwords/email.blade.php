@@ -16,7 +16,7 @@
                   <div class="tab-pane active" id="tab_1">
                     @if (session('status'))
                         <div class="alert alert-success">
-                            {{ session('status') }}
+                            Chúng tôi đã gửi email liên kết đặt lại mật khẩu của bạn!
                         </div>
                     @else
                     <form class="col-md-12 p-t-10" role="form" method="POST" action="{{ route('backpack.auth.password.email') }}">
@@ -53,10 +53,10 @@
               </div>
 
               <div class="text-center m-t-10">
-                <a href="{{ route('backpack.auth.login') }}">{{ trans('backpack::base.login') }}</a>
+                <a href="{{ route('login') }}">{{ trans('backpack::base.login') }}</a>
 
                 @if (config('backpack.base.registration_open'))
-                / <a href="{{ route('backpack.auth.register') }}">{{ trans('backpack::base.register') }}</a>
+                / <a href="{{ route('register') }}">{{ trans('backpack::base.register') }}</a>
                 @endif
               </div>
         </div>

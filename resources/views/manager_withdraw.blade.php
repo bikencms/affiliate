@@ -61,6 +61,7 @@
                         <th>Số Tiền</th>
                         <th>Lý do</th>
                         <th>Trạng thái</th>
+                        <th>Ngày khớp lệnh</th>
                         <th>Hoạt động</th>
                     </tr>
                     </thead>
@@ -82,6 +83,7 @@
                             <td>
                                 {{ $withdraw->status == 0 ? 'Đang chờ...' : 'Rút thành công' }}
                             </td>
+                            <td>{{ date_format($withdraw->created_at, 'd/m/Y') }}</td>
                             <td>
                                 @if( $withdraw->status == 0 )
                                     <form action="{{ url('manager-withdraw/active') }}" method="POST" class="activeForm{{$withdraw->id}}">

@@ -5,10 +5,8 @@
             {{ config('app.name') }}
         @endcomponent
     @endslot
-
     {{-- Body --}}
     {{ $slot }}
-
     {{-- Subcopy --}}
     @isset($subcopy)
         @slot('subcopy')

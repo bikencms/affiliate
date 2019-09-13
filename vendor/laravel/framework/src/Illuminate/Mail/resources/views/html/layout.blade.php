@@ -22,7 +22,6 @@
             }
         }
     </style>
-
     <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
         <tr>
             <td align="center">
@@ -34,6 +33,11 @@
                         <td class="body" width="100%" cellpadding="0" cellspacing="0">
                             <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
                                 <!-- Body content -->
+                                <tr>
+                                    <td>
+                                        <img src="https://robot-rfx.com/assets/image/logo.png" alt="Logo" width="100%">
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="content-cell">
                                         {{ Illuminate\Mail\Markdown::parse($slot) }}

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Hệ Thống Robot giao dịch ngoại hối | Robox-rfx.com'),
 
     /*
     |--------------------------------------------------------------------------

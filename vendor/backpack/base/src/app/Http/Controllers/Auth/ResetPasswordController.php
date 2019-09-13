@@ -52,7 +52,7 @@ class ResetPasswordController extends Controller
         }
 
         // where to redirect after password was reset
-        $this->redirectTo = property_exists($this, 'redirectTo') ? $this->redirectTo : config('backpack.base.route_prefix', 'admin').'/dashboard';
+        $this->redirectTo = property_exists($this, 'redirectTo') ? $this->redirectTo : '/dashboard';
     }
 
     // -------------------------------------------------------
@@ -97,6 +97,7 @@ class ResetPasswordController extends Controller
      */
     protected function guard()
     {
-        return backpack_auth();
+        session(['reset-success' => '1']);
+        return auth();
     }
 }

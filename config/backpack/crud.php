@@ -532,7 +532,7 @@ return [
         // "uz_Latn_UZ" => "Uzbek (Latin, Uzbekistan)",
         // "uz" => "Uzbek",
         // "vi_VN" => "Vietnamese (Vietnam)",
-        // "vi" => "Vietnamese",
+        "vi" => "Vietnamese",
         // "vun_TZ" => "Vunjo (Tanzania)",
         // "vun" => "Vunjo",
         // "cy_GB" => "Welsh (United Kingdom)",

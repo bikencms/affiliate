@@ -60,6 +60,7 @@
                         <th>ID</th>
                         <th>User</th>
                         <th>Package</th>
+                        <th>Created at</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -70,6 +71,7 @@
                             <td class="font-w600">{{ $order->id }}</td>
                             <td class="font-w600">{{ $order->user->email }} </td>
                             <td class="font-w600">{{ $order->package->name }}</td>
+                            <td class="font-w600">{{ date_format($order->package->created_at, 'd/m/Y') }}</td>
                             <td class="font-w600">
                                 @if( $order->status == 0 )
                                     <span class="text-red">Pending</span>

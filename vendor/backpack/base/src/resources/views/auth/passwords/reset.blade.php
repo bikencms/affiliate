@@ -1,4 +1,4 @@
-@extends('backpack::layout_guest')
+@extends('layouts.app')
 
 @section('content')
     <div class="row m-t-40">

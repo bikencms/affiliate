@@ -34,14 +34,14 @@
         <div class="box-body">
             @foreach( $packageFee  as $key => $packageF)
                 <div class="col-lg-3 col-xs-6">
-                    <div class="small-box @if(isset($packageFee[$key])) {{ $robotFee[$key]['bg'] }} @else bg-green @endif ">
+                    <div class="small-box @if(isset($robotFee[$key])) {{ $robotFee[$key]['bg'] }} @else bg-green @endif ">
                         <div class="inner">
                             <h3>{{ $packageF->price == 0 ? 'Đang cập nhập' : $packageF->price . '$' }}</h3>
                             <p>{{ $packageF->name }}</p>
                             <p><?= $packageF->description ?></p>
                         </div>
                         <div class="icon">
-                            <i class="fa @if(isset($packageFee[$key])) {{ $robotFee[$key]['icon'] }} @else fa-rocket @endif "></i>
+                            <i class="fa @if(isset($robotFee[$key])) {{ $robotFee[$key]['icon'] }} @else fa-rocket @endif "></i>
                         </div>
                         <a href="{{ route('add-package', [ 'id_package' => $packageF->id ]) }}"
                            class="small-box-footer btn-go-to">

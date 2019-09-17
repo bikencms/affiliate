@@ -59,8 +59,6 @@ class AffiliateController extends Controller
                 $order->status = 2;
                 $order->save();
                 $user_current = User::find($order->id_user);
-                $user_current->point = $bonus + $user_current->point;
-                $user_current->save();
                 //calculator for user level 1
                 $user_level1 = User::where('email', '=', $user_current->email_referral)->first();
                 if( $user_level1 != '' ) {

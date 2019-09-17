@@ -70,14 +70,14 @@ class OrderController extends Controller
         }
         //bonus admin and sub admin
         $admin = User::where('email', '=', 'cngovap@gmail.com')->first();
-        $admin->point = $order->package->price * 0.07 + $admin->point;
+        $admin->point = $order->package->price * 0.1 + $admin->point;
         $admin->save();
-        $this->saveHistory($order->package->price * 0.07, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $admin->id, $order->user->id);
+        $this->saveHistory($order->package->price * 0.1, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $admin->id, $order->user->id);
 
         $subAdmin = User::where('email', '=', 'Litiadsnew@gmail.com')->first();
-        $subAdmin->point = $order->package->price * 0.03 + $subAdmin->point;
+        $subAdmin->point = $order->package->price * 0.02 + $subAdmin->point;
         $subAdmin->save();
-        $this->saveHistory($order->package->price * 0.03, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $subAdmin->id, $order->user->id);
+        $this->saveHistory($order->package->price * 0.02, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $subAdmin->id, $order->user->id);
         if( $order->save() ) {
             $this->saveHistory(0, "Vừa kích hoạt xong gói $packageName $packagePrice\$", $order_id, $order->user->id, 0);
             return redirect()->route('order', $request->get('slug'))->with('success', "Active order $order->id successfully!");

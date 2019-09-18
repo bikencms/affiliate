@@ -67,6 +67,16 @@ class OrderController extends Controller
                     $this->saveHistory($order->package->price * 0.05, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $user_level3->id, $order->user->id);
                 }
             }
+        } else {
+            $admin = User::where('email', '=', 'cngovap@gmail.com')->first();
+            $admin->point = $order->package->price * 0.3 + $admin->point;
+            $admin->save();
+            $this->saveHistory($order->package->price * 0.3, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $admin->id, $order->user->id);
+
+            $subAdmin = User::where('email', '=', 'Litiadsnew@gmail.com')->first();
+            $subAdmin->point = $order->package->price * 0.05 + $subAdmin->point;
+            $subAdmin->save();
+            $this->saveHistory($order->package->price * 0.05, "Hoa hồng giới thiệu gói $packageName $packagePrice\$", $order_id, $subAdmin->id, $order->user->id);
         }
         //bonus admin and sub admin
         $admin = User::where('email', '=', 'cngovap@gmail.com')->first();

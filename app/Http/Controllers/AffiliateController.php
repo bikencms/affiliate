@@ -82,6 +82,17 @@ class AffiliateController extends Controller
                             $this->saveHistory($bonus * 0.05, "Phát sinh hoa hồng hàng tháng", $order->id, $user_level3->id, $order->id_user);
                         }
                     }
+                } else {
+                    //bonus admin and sub admin
+                    $admin = User::where('email', '=', 'cngovap@gmail.com')->first();
+                    $admin->point = $bonus * 0.3 + $admin->point;
+                    $admin->save();
+                    $this->saveHistory($bonus * 0.3, "Thưởng do phát sinh hoa hồng hàng tháng của $order->user->email", $order_id, $admin->id, $order->user->id);
+
+                    $subAdmin = User::where('email', '=', 'Litiadsnew@gmail.com')->first();
+                    $subAdmin->point = $bonus * 0.05 + $subAdmin->point;
+                    $subAdmin->save();
+                    $this->saveHistory($bonus * 0.05, "Thưởng do phát sinh hoa hồng hàng tháng của $order->user->email", $order_id, $subAdmin->id, $order->user->id);
                 }
                 //bonus admin and sub admin
                 $admin = User::where('email', '=', 'cngovap@gmail.com')->first();

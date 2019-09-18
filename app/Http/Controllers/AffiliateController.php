@@ -92,7 +92,7 @@ class AffiliateController extends Controller
                 $subAdmin = User::where('email', '=', 'Litiadsnew@gmail.com')->first();
                 $subAdmin->point = $bonus * 0.02 + $subAdmin->point;
                 $subAdmin->save();
-                $this->saveHistory($bonus * 0.02, "Thưởng do phát sinh hoa hồng hàng tháng của $order->user->email", $order_id, $admin->id, $order->user->id);
+                $this->saveHistory($bonus * 0.02, "Thưởng do phát sinh hoa hồng hàng tháng của $order->user->email", $order_id, $subAdmin->id, $order->user->id);
             } else {
                 return redirect('/affiliate/'. $order_id)->with('info', "Month $month is not order.");
             }
